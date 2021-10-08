@@ -15,7 +15,7 @@ function sayHelloBrowser() {
  */
 function sayHelloAlert() {
   // Declare a string literal variable.
-  var greeting = 'Hello world!',
+  let greeting = 'Hello world!',
       ui = SpreadsheetApp.getUi();
   // Display a message dialog with the greeting 
   //(visible from the containing spreadsheet).

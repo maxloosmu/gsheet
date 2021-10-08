@@ -1,0 +1,346 @@
+getBackground()
+
+Returns the background color of the top-left cell in the range (for example, '#ffffff').
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+var cell = sheet.getRange("B5");
+Logger.log(cell.getBackground());
+
+Return
+
+String — The color code of the background.
+Authorization
+
+Scripts that use this method require authorization with one or more of the following scopes:
+
+    https://www.googleapis.com/auth/spreadsheets.currentonly
+    https://www.googleapis.com/auth/spreadsheets
+------------------------------------------------
+------------------------------------------------
+getRowIndex()
+
+Returns the row position for this range. Identical to getRow().
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+var range = sheet.getRange("B2");
+Logger.log(range.getRowIndex());
+
+Return
+
+Integer — The row position of the range.
+Authorization
+
+Scripts that use this method require authorization with one or more of the following scopes:
+
+    https://www.googleapis.com/auth/spreadsheets.currentonly
+    https://www.googleapis.com/auth/spreadsheets
+
+See also
+
+    getRow()
+------------------------------------------------
+------------------------------------------------
+getRow()
+
+Returns the row position for this range. Identical to getRowIndex().
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+var range = sheet.getRange("B2");
+Logger.log(range.getRow());
+
+Return
+
+Integer — The row position of the range.
+Authorization
+
+Scripts that use this method require authorization with one or more of the following scopes:
+
+    https://www.googleapis.com/auth/spreadsheets.currentonly
+    https://www.googleapis.com/auth/spreadsheets
+------------------------------------------------
+------------------------------------------------
+insertRowAfter(afterPosition)
+
+Inserts a row after the given row position.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+// This inserts a row after the first row position
+sheet.insertRowAfter(1);
+
+Parameters
+Name	Type	Description
+afterPosition	Integer	The row after which the new row should be added.
+Return
+
+Sheet — the sheet, useful for method chaining
+Authorization
+
+Scripts that use this method require authorization with one or more of the following scopes:
+
+    https://www.googleapis.com/auth/spreadsheets.currentonly
+    https://www.googleapis.com/auth/spreadsheets
+------------------------------------------------
+------------------------------------------------
+insertRowBefore(beforePosition)
+
+Inserts a row before the given row position.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+// This inserts a row before the first row position
+sheet.insertRowBefore(1);
+
+Parameters
+Name	Type	Description
+beforePosition	Integer	The row before which the new row should be added.
+Return
+
+Sheet — the sheet, useful for method chaining
+Authorization
+
+Scripts that use this method require authorization with one or more of the following scopes:
+
+    https://www.googleapis.com/auth/spreadsheets.currentonly
+    https://www.googleapis.com/auth/spreadsheets
+------------------------------------------------
+------------------------------------------------
+setHorizontalAlignment(alignment)
+
+Set the horizontal (left to right) alignment for the given range (left/center/right).
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+var cell = sheet.getRange("B2");
+cell.setHorizontalAlignment("center");
+
+Parameters
+Name	Type	Description
+alignment	String	The alignment, either 'left', 'center' or 'normal'; a null value resets the alignment.
+Return
+
+Range — This range, for chaining.
+Authorization
+
+Scripts that use this method require authorization with one or more of the following scopes:
+
+    https://www.googleapis.com/auth/spreadsheets.currentonly
+    https://www.googleapis.com/auth/spreadsheets
+------------------------------------------------
+------------------------------------------------
+setHorizontalAlignments(alignments)
+
+Sets a rectangular grid of horizontal alignments. see setHorizontalAlignment(alignment)
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+// The size of the two-dimensional array must match the size of the range.
+var horizontalAlignments = [
+  [ "left", "right", "center" ]
+];
+
+var range = sheet.getRange("B2:D2");
+range.setHorizontalAlignments(horizontalAlignments);
+
+Parameters
+Name	Type	Description
+alignments	Object[][]	A two-dimensional array of alignments, either 'left', 'center' or 'normal'; a null value resets the alignment.
+Return
+
+Range — This range, for chaining.
+Authorization
+
+Scripts that use this method require authorization with one or more of the following scopes:
+
+    https://www.googleapis.com/auth/spreadsheets.currentonly
+    https://www.googleapis.com/auth/spreadsheets
+
+See also
+
+    setHorizontalAlignment(alignment)
+------------------------------------------------
+------------------------------------------------
+offset(rowOffset, columnOffset)
+
+Returns a new range that is offset from this range by the given number of rows and columns (which can be negative). The new range is the same size as the original range.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+var cell = sheet.getRange("A1");
+
+// newCell references B2
+var newCell = cell.offset(1, 1);
+
+Parameters
+Name	Type	Description
+rowOffset	Integer	The number of rows down from the range's top-left cell; negative values represent rows up from the range's top-left cell.
+columnOffset	Integer	The number of columns right from the range's top-left cell; negative values represent columns left from the range's top-left cell.
+Return
+
+Range — This range, for chaining.
+------------------------------------------------
+------------------------------------------------
+offset(rowOffset, columnOffset, numRows)
+
+Returns a new range that is relative to the current range, whose upper left point is offset from the current range by the given rows and columns, and with the given height in cells.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+var cell = sheet.getRange("A1");
+
+// newCell references B2:B3
+var newRange = cell.offset(1, 1, 2);
+
+Parameters
+Name	Type	Description
+rowOffset	Integer	The number of rows down from the range's top-left cell; negative values represent rows up from the range's top-left cell.
+columnOffset	Integer	The number of columns right from the range's top-left cell; negative values represent columns left from the range's top-left cell.
+numRows	Integer	The height in rows of the new range.
+Return
+
+Range — This range, for chaining.
+------------------------------------------------
+------------------------------------------------
+offset(rowOffset, columnOffset, numRows, numColumns)
+
+Returns a new range that is relative to the current range, whose upper left point is offset from the current range by the given rows and columns, and with the given height and width in cells.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+var cell = sheet.getRange("A1");
+
+// newCell references B2:C3
+var newRange = cell.offset(1, 1, 2, 2);
+
+Parameters
+Name	Type	Description
+rowOffset	Integer	The number of rows down from the range's top-left cell; negative values represent rows up from the range's top-left cell.
+columnOffset	Integer	The number of columns right from the range's top-left cell; negative values represent columns left from the range's top-left cell.
+numRows	Integer	The height in rows of the new range.
+numColumns	Integer	The width in columns of the new range.
+Return
+Range — This range, for chaining.
+------------------------------------------------
+------------------------------------------------
+
+
+
+
+
+
+
+
+------------------------------------------------
+------------------------------------------------
+function onEdit(e) {
+  // respond to special inputs
+  let c = e.range;
+  if (c.getBackground() != "#ffffff") { return }
+
+  let cvalue = c.getValue();
+  if (cvalue == "EVERY" ||
+      cvalue == "PARTY") {
+
+    if (! allBlank(neighboursOf(c))) { c.getSheet().insertRowsAfter(c.getRowIndex(), 5); }
+    drawPlusUnderEvery(c);
+  }
+
+  if (cvalue == "IF"   ||       // add a checkbox
+      cvalue == "WHEN" ||
+      cvalue == "OR") {
+        c.setHorizontalAlignment("right");
+        c.offset(0,1).insertCheckboxes()
+                     .setBorder(false,true,false, false, false,false,"grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+
+        if (c.offset(0,2).isBlank()) { c.offset(0,2).setValue("some condition"); }
+        if (e.oldValue == "AND" ||
+            e.oldValue == "UNLESS") {
+          c.offset(0,1,1,4).setBorder(false,null,false,false,false,false,"white",SpreadsheetApp.BorderStyle.SOLID_THICK);
+        }
+        c.setBorder(null, null, null, true, false, false,"grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+      }
+
+  if (cvalue == "AND") {       // add a checkbox and a horizontal line
+        c.setHorizontalAlignment("right");
+        c.offset(0,1).insertCheckboxes()
+                     .setBorder(null,true,false, false, false,false,"grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+        if (c.offset(0,2).isBlank()) { c.offset(0,2).setValue("some condition"); }
+        c.offset(0,1,1,4).setBorder(true,true,false,false,false,false,"grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+        c.setBorder(null, null, null, true, false, false,"grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+   
+  }
+
+  if (cvalue == "HENCE" ||    // draw an L
+      cvalue == "LEST") {
+        c.setHorizontalAlignment("right");
+        c.offset(0,1,1,4).setBorder(false, true,true,false,false,false,"grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+      }
+
+  if (cvalue == "UNLESS") { // draw the borders around the checkbox to carve out
+      c.setHorizontalAlignment("right");
+      c.offset(0,1)
+        .insertCheckboxes()
+        .setBorder(true,false,true,true,false,false,"grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+      if (c.offset(0,2).isBlank()) { c.offset(0,2).setValue("some exception"); }
+  }
+}
+
+
+// set the cell borders so as to draw horizontal and vertical lines
+function drawPlusUnderEvery(c) {
+  c.setHorizontalAlignment("right");
+
+  if (c.getValue() == "EVERY") { c.offset(0,1).setValue("Entity"); }
+  if (c.getValue() == "PARTY") { c.offset(0,1).setValue("P"); }
+  c.offset(1,0).setValue("MUST").setHorizontalAlignment("right");
+  c.offset(1,1).setValue("BY").setHorizontalAlignment("right");
+  c.offset(1,2).setValue("some deadline");
+  c.offset(2,0).setValue("➔").setHorizontalAlignment("right");
+  c.offset(2,1).setValue("take").setHorizontalAlignment("right");
+  c.offset(2,2).setValue("some Action");
+
+  c.offset(0,0,3).setBorder( false, false, false, true, false, false, "grey", SpreadsheetApp.BorderStyle.SOLID_THICK);
+  c.offset(1,-1,1,7).setBorder(false, false, true, false, false, false, "grey", SpreadsheetApp.BorderStyle.SOLID_THICK);
+  c.offset(1,0).setBorder( false, false, true, true, false, false, "grey", SpreadsheetApp.BorderStyle.SOLID_THICK);
+ 
+}
+
+
+// return the (up to) 8 cells surrounding cell c
+function neighboursOf(c) {
+  let neighbours = 
+    [ c.offset(-1,-1,3)
+    , c.offset( 0,-1,1)
+    , c.offset( 0, 1,1)
+    , c.offset( 1,-1,3)
+    ];
+  Logger.log("neighbours are:");
+  Logger.log(neighbours);
+  return neighbours;
+}
+
+
+// are all the cells given, blank?
+function allBlank(rs) {
+  for (var c of rs) {
+    Logger.log("testing " + c)
+    if (! c.isBlank()) { Logger.log("allBlank: returning false");
+                        return false; }
+  }
+  Logger.log("allBlank: returning true");
+  return true;
+}
+
