@@ -1,3 +1,120 @@
+Event Objects 
+range
+
+A Range object, representing the cell or range of cells that were edited.
+
+Range
+------------------------------------------------
+------------------------------------------------
+getRange(row, column)
+
+Returns the range with the top left cell at the given coordinates.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+// Passing only two arguments returns a "range" with a single cell.
+var range = sheet.getRange(1, 1);
+var values = range.getValues();
+Logger.log(values[0][0]);
+
+Parameters
+Name	Type	Description
+row	Integer	The row index of the cell to return; row indexing starts with 1.
+column	Integer	The column index of the cell to return; column indexing starts with 1.
+Return
+
+Range — A range containing only this cell.
+------------------------------------------------
+------------------------------------------------
+getRange(row, column, numRows)
+
+Returns the range with the top left cell at the given coordinates, and with the given number of rows.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+// When the "numRows" argument is used, only a single column of data is returned.
+var range = sheet.getRange(1, 1, 3);
+var values = range.getValues();
+
+// Prints 3 values from the first column, starting from row 1.
+for (var row in values) {
+  for (var col in values[row]) {
+    Logger.log(values[row][col]);
+  }
+}
+
+Parameters
+Name	Type	Description
+row	Integer	The starting row index of the range; row indexing starts with 1.
+column	Integer	The column index of the range; column indexing starts with 1.
+numRows	Integer	The number of rows to return.
+Return
+
+Range — A range containing a single column of data with the number of rows specified.
+------------------------------------------------
+------------------------------------------------
+getRange(row, column, numRows, numColumns)
+
+Returns the range with the top left cell at the given coordinates with the given number of rows and columns.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+var range = sheet.getRange(1, 1, 3, 3);
+var values = range.getValues();
+
+// Print values from a 3x3 box.
+for (var row in values) {
+  for (var col in values[row]) {
+    Logger.log(values[row][col]);
+  }
+}
+
+Parameters
+Name	Type	Description
+row	Integer	The starting row index of the range; row indexing starts with 1.
+column	Integer	The starting column index of the range; column indexing starts with 1.
+numRows	Integer	The number of rows to return.
+numColumns	Integer	The number of columns to return.
+Return
+
+Range — A range corresponding to the area specified.
+------------------------------------------------
+------------------------------------------------
+getRange(a1Notation)
+
+Returns the range as specified in A1 notation or R1C1 notation.
+
+// Get a range A1:D4 on sheet titled "Invoices"
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var range = ss.getRange("Invoices!A1:D4");
+
+// Get cell A1 on the first sheet
+var sheet = ss.getSheets()[0];
+var cell = sheet.getRange("A1");
+
+Parameters
+Name	Type	Description
+a1Notation	String	The range to return, as specified in A1 notation or R1C1 notation.
+Return
+
+Range — the range at the location designated
+------------------------------------------------
+------------------------------------------------
+getRangeList(a1Notations)
+
+Returns the RangeList collection representing the ranges in the same sheet specified by a non-empty list of A1 notations or R1C1 notations.
+
+// Get a list of ranges A1:D4, F1:H4.
+var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+var rangeList  = sheet.getRangeList(['A1:D4', 'F1:H4']);
+
+Parameters
+Name	Type	Description
+a1Notations	String[]	The list of ranges to return, as specified in A1 notation or R1C1 notation.
+Return
+RangeList — the range list at the location designated
+------------------------------------------------
+------------------------------------------------
 getBackground()
 
 Returns the background color of the top-left cell in the range (for example, '#ffffff').
@@ -11,12 +128,6 @@ Logger.log(cell.getBackground());
 Return
 
 String — The color code of the background.
-Authorization
-
-Scripts that use this method require authorization with one or more of the following scopes:
-
-    https://www.googleapis.com/auth/spreadsheets.currentonly
-    https://www.googleapis.com/auth/spreadsheets
 ------------------------------------------------
 ------------------------------------------------
 getRowIndex()
@@ -32,13 +143,6 @@ Logger.log(range.getRowIndex());
 Return
 
 Integer — The row position of the range.
-Authorization
-
-Scripts that use this method require authorization with one or more of the following scopes:
-
-    https://www.googleapis.com/auth/spreadsheets.currentonly
-    https://www.googleapis.com/auth/spreadsheets
-
 See also
 
     getRow()
@@ -57,12 +161,6 @@ Logger.log(range.getRow());
 Return
 
 Integer — The row position of the range.
-Authorization
-
-Scripts that use this method require authorization with one or more of the following scopes:
-
-    https://www.googleapis.com/auth/spreadsheets.currentonly
-    https://www.googleapis.com/auth/spreadsheets
 ------------------------------------------------
 ------------------------------------------------
 insertRowAfter(afterPosition)
@@ -81,12 +179,6 @@ afterPosition	Integer	The row after which the new row should be added.
 Return
 
 Sheet — the sheet, useful for method chaining
-Authorization
-
-Scripts that use this method require authorization with one or more of the following scopes:
-
-    https://www.googleapis.com/auth/spreadsheets.currentonly
-    https://www.googleapis.com/auth/spreadsheets
 ------------------------------------------------
 ------------------------------------------------
 insertRowBefore(beforePosition)
@@ -105,12 +197,72 @@ beforePosition	Integer	The row before which the new row should be added.
 Return
 
 Sheet — the sheet, useful for method chaining
-Authorization
+------------------------------------------------
+------------------------------------------------
+insertRows(rowIndex)
 
-Scripts that use this method require authorization with one or more of the following scopes:
+Inserts a blank row in a sheet at the specified location.
 
-    https://www.googleapis.com/auth/spreadsheets.currentonly
-    https://www.googleapis.com/auth/spreadsheets
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+// Shifts all rows down by one
+sheet.insertRows(1);
+
+Parameters
+Name	Type	Description
+rowIndex	Integer	The index indicating where to insert a row.
+------------------------------------------------
+------------------------------------------------
+insertRows(rowIndex, numRows)
+
+Inserts one or more consecutive blank rows in a sheet starting at the specified location.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+// Shifts all rows down by three
+sheet.insertRows(1, 3);
+
+Parameters
+Name	Type	Description
+rowIndex	Integer	The index indicating where to insert a row.
+numRows	Integer	The number of rows to insert.
+------------------------------------------------
+------------------------------------------------
+insertRowsAfter(afterPosition, howMany)
+
+Inserts a number of rows after the given row position.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+// This inserts five rows after the first row
+sheet.insertRowsAfter(1, 5);
+
+Parameters
+Name	Type	Description
+afterPosition	Integer	The row after which the new rows should be added.
+howMany	Integer	The number of rows to insert.
+Return
+
+Sheet — the sheet, useful for method chaining
+------------------------------------------------
+------------------------------------------------
+insertRowsBefore(beforePosition, howMany)
+
+Inserts a number of rows before the given row position.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+// This inserts five rows before the first row
+sheet.insertRowsBefore(1, 5);
+
+Parameters
+Name	Type	Description
+beforePosition	Integer	The row before which the new rows should be added.
+howMany	Integer	The number of rows to insert.
+Return
+Sheet — the sheet, useful for method chaining
 ------------------------------------------------
 ------------------------------------------------
 setHorizontalAlignment(alignment)
@@ -129,12 +281,6 @@ alignment	String	The alignment, either 'left', 'center' or 'normal'; a null valu
 Return
 
 Range — This range, for chaining.
-Authorization
-
-Scripts that use this method require authorization with one or more of the following scopes:
-
-    https://www.googleapis.com/auth/spreadsheets.currentonly
-    https://www.googleapis.com/auth/spreadsheets
 ------------------------------------------------
 ------------------------------------------------
 setHorizontalAlignments(alignments)
@@ -158,13 +304,6 @@ alignments	Object[][]	A two-dimensional array of alignments, either 'left', 'cen
 Return
 
 Range — This range, for chaining.
-Authorization
-
-Scripts that use this method require authorization with one or more of the following scopes:
-
-    https://www.googleapis.com/auth/spreadsheets.currentonly
-    https://www.googleapis.com/auth/spreadsheets
-
 See also
 
     setHorizontalAlignment(alignment)
@@ -235,14 +374,210 @@ Return
 Range — This range, for chaining.
 ------------------------------------------------
 ------------------------------------------------
+setBorder(top, left, bottom, right, vertical, horizontal)
 
+Sets the border property. Valid values are true (on), false (off) and null (no change).
 
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
 
+var cell = sheet.getRange("B2");
+// Sets borders on the top and bottom, but leaves the left and right unchanged
+cell.setBorder(true, null, true, null, false, false);
 
+Parameters
+Name	Type	Description
+top	Boolean	true for border, false for none, null for no change.
+left	Boolean	true for border, false for none, null for no change.
+bottom	Boolean	true for border, false for none, null for no change.
+right	Boolean	true for border, false for none, null for no change.
+vertical	Boolean	true for internal vertical borders, false for none, null for no change.
+horizontal	Boolean	true for internal horizontal borders, false for none, null for no change.
+Return
 
+Range — This range, for chaining.
+------------------------------------------------
+------------------------------------------------
+setBorder(top, left, bottom, right, vertical, horizontal, color, style)
 
+Sets the border property with color and/or style. Valid values are true (on), false (off) and null (no change). For color, use Color in CSS notation (such as '#ffffff' or 'white').
 
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
 
+var cell = sheet.getRange("B2");
+// Sets borders on the top and bottom, but leaves the left and right unchanged
+// Also sets the color to "red", and the border to "DASHED".
+cell.setBorder(true, null, true, null, false, false, "red", SpreadsheetApp.BorderStyle.DASHED);
+
+Parameters
+Name	Type	Description
+top	Boolean	true for border, false for none, null for no change.
+left	Boolean	true for border, false for none, null for no change.
+bottom	Boolean	true for border, false for none, null for no change.
+right	Boolean	true for border, false for none, null for no change.
+vertical	Boolean	true for internal vertical borders, false for none, null for no change.
+horizontal	Boolean	true for internal horizontal borders, false for none, null for no change.
+color	String	A color in CSS notation (such as '#ffffff' or 'white'), null for default color (black).
+style	BorderStyle	A style for the borders, null for default style (solid).
+Return
+
+Range — This range, for chaining.
+------------------------------------------------
+------------------------------------------------
+Enum BorderStyle
+
+Styles that can be set on a range using Range.setBorder(top, left, bottom, right, vertical, horizontal, color, style).
+Properties
+Property	Type	Description
+DOTTED	Enum	Dotted line borders.
+DASHED	Enum	Dashed line borders.
+SOLID	Enum	Thin solid line borders.
+SOLID_MEDIUM	Enum	Medium solid line borders.
+SOLID_THICK	Enum	Thick solid line borders.
+DOUBLE	Enum	Two solid line borders.
+------------------------------------------------
+------------------------------------------------
+isBlank()
+
+Returns true if the range is totally blank.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+var range = sheet.getRange("B2:D4");
+
+Logger.log(range.isBlank());
+
+Return
+
+Boolean — true if the range is blank; false otherwise.
+------------------------------------------------
+------------------------------------------------
+getValue()
+
+Returns the value of the top-left cell in the range. The value may be of type Number, Boolean, Date, or String depending on the value of the cell. Empty cells return an empty string.
+Return
+
+Object — The value in this cell.
+------------------------------------------------
+------------------------------------------------
+getValues()
+
+Returns the rectangular grid of values for this range.
+
+Returns a two-dimensional array of values, indexed by row, then by column. The values may be of type Number, Boolean, Date, or String, depending on the value of the cell. Empty cells are represented by an empty string in the array. Remember that while a range index starts at 1, 1, the JavaScript array is indexed from [0][0].
+
+// The code below gets the values for the range C2:G8
+// in the active spreadsheet.  Note that this is a JavaScript array.
+var values = SpreadsheetApp.getActiveSheet().getRange(2, 3, 6, 4).getValues();
+Logger.log(values[0][0]);
+
+In web apps, a Date value isn't a legal parameter. getValues() fails to return data to a web app if the range contains a cell with a Date value. Instead, transform all the values retrieved from the sheet to a supported JavaScript primitive like a Number, Boolean, or String.
+Return
+
+Object[][] — A two-dimensional array of values.
+------------------------------------------------
+------------------------------------------------
+setValue(value)
+
+Sets the value of the range. The value can be numeric, string, boolean or date. If it begins with '=' it is interpreted as a formula.
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+var cell = sheet.getRange("B2");
+cell.setValue(100);
+
+Parameters
+Name	Type	Description
+value	Object	The value for the range.
+Return
+
+Range — This range, for chaining.
+------------------------------------------------
+------------------------------------------------
+setValues(values)
+
+Sets a rectangular grid of values (must match dimensions of this range).
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+// The size of the two-dimensional array must match the size of the range.
+var values = [
+  [ "2.000", "1,000,000", "$2.99" ]
+];
+
+var range = sheet.getRange("B2:D2");
+range.setValues(values);
+
+Parameters
+Name	Type	Description
+values	Object[][]	A two-dimensional array of values.
+Return
+
+Range — This range, for chaining.
+------------------------------------------------
+------------------------------------------------
+Event Objects 
+oldValue
+
+Cell value prior to the edit, if any. Only available if the edited range is a single cell. Will be undefined if the cell had no previous content.
+
+1234
+------------------------------------------------
+------------------------------------------------
+insertCheckboxes()
+
+Inserts checkboxes into each cell in the range, configured with true for checked and false for unchecked. Sets the value of all cells in the range to false.
+
+var range = SpreadsheetApp.getActive().getRange('A1:B10');
+
+// Inserts checkboxes into each cell in the range A1:B10 configured with 'true' for checked
+// and 'false' for unchecked. Also, sets the value of each cell in the range A1:B10 to 'false'.
+range.insertCheckboxes();
+
+Return
+
+Range — This range, for chaining.
+------------------------------------------------
+------------------------------------------------
+insertCheckboxes(checkedValue)
+
+Inserts checkboxes into each cell in the range, configured with a custom value for checked and the empty string for unchecked. Sets the value of each cell in the range to the empty string.
+
+var range = SpreadsheetApp.getActive().getRange('A1:B10');
+
+// Inserts checkboxes into each cell in the range A1:B10 configured with 'yes' for checked
+// and the empty string for unchecked. Also, sets the value of each cell in the range A1:B10 to
+//  the empty string.
+range.insertCheckboxes('yes');
+
+Parameters
+Name	Type	Description
+checkedValue	Object	The checked value for the checkbox data validation.
+Return
+
+Range — This range, for chaining.
+------------------------------------------------
+------------------------------------------------
+insertCheckboxes(checkedValue, uncheckedValue)
+
+Inserts checkboxes into each cell in the range, configured with custom values for the checked and unchecked states. Sets the value of each cell in the range to the custom unchecked value.
+
+var range = SpreadsheetApp.getActive().getRange('A1:B10');
+
+// Inserts checkboxes into each cell in the range A1:B10 configured with 'yes' for checked
+// and 'no' for unchecked. Also, sets the value of each cell in the range A1:B10 to 'no'.
+range.insertCheckboxes('yes', 'no');
+
+Parameters
+Name	Type	Description
+checkedValue	Object	The checked value for the checkbox data validation.
+uncheckedValue	Object	The unchecked value for the checkbox data validation.
+Return
+
+Range — This range, for chaining.
 ------------------------------------------------
 ------------------------------------------------
 function onEdit(e) {
@@ -343,4 +678,5 @@ function allBlank(rs) {
   Logger.log("allBlank: returning true");
   return true;
 }
-
+------------------------------------------------
+------------------------------------------------
