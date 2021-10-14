@@ -286,3 +286,38 @@ function ENGLISHTOFRENCH(input) {
     .translate(input, 'en', 'fr');
 }
 
+// Extract an array of all the property names 
+//  defined for Spreadsheet and write them to
+//  column A of the active sheet in the active
+//   spreadsheet.
+function testSpreadsheet () {
+  var ss = 
+     SpreadsheetApp.getActiveSpreadsheet(),
+      sh = ss.getActiveSheet(),
+      i,
+      spreadsheetProperties = [],
+      outputRngStart = sh.getRange('B8');
+  sh.getRange('B7')
+    .setValue('spreadsheet_properties');
+  sh.getRange('B7')
+    .setFontWeight('bold');
+  /* spreadsheetProperties = 
+    ss.getProperties();
+  for (i = 0; 
+       i < spreadsheetProperties.length;
+       i += 1) {
+    outputRngStart.offset(i, 0)
+       .setValue(spreadsheetProperties[i]);
+  } */
+  // https://stackoverflow.com/questions/25722682/iterate-over-an-object-in-google-apps-script
+  for (const [key, value] of Object.entries(ss)) {
+    Logger.log(`${key}: ${value}`);
+  }
+  var keys = [];
+  for(var k in Object) keys.push(k+':'+Object[k]);
+  Logger.log("total " + keys.length + "\n" + keys.join('\n'));
+
+  // Logger.log(Object.getProperties());
+}
+
+
