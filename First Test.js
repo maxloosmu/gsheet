@@ -1,23 +1,23 @@
 function myFunction() {
-  
+
 }
 
 function sayHelloBrowser() {
   // Declare a string literal variable.
   var greeting = 'Hello world!';
-  // Display a message dialog with the greeting 
+  // Display a message dialog with the greeting
 //(visible from the containing spreadsheet).
   Browser.msgBox(greeting);
 }
 
-/** 
+/**
  * @customfunction
  */
 function sayHelloAlert() {
   // Declare a string literal variable.
   let greeting = 'Hello world!',
       ui = SpreadsheetApp.getUi();
-  // Display a message dialog with the greeting 
+  // Display a message dialog with the greeting
   //(visible from the containing spreadsheet).
   // Older versions of Sheets used the Browser.msgBox()
   ui.alert(greeting);
@@ -26,12 +26,12 @@ function sayHelloAlert() {
 function helloDocument() {
   var greeting = 'Hello world!';
   // Create DocumentApp instance.
-  var doc = 
+  var doc =
     DocumentApp.create('test_DocumentApp');
   // Write the greeting to a Google document.
   doc.setText(greeting);
   // Close the newly created document
-  doc.saveAndClose();  
+  doc.saveAndClose();
 }
 
 function helloLogger() {
@@ -39,10 +39,10 @@ function helloLogger() {
   //Write the greeting to a logging window.
   // This is visible from the script editor
   //   window menu "View->Logs...".
-  Logger.log(greeting);  
+  Logger.log(greeting);
 }
 
-/** 
+/**
  * @customfunction
  */
 function helloCell() {
@@ -53,13 +53,13 @@ function helloSpreadsheet() {
   var greeting = 'Hello world!',
       sheet = SpreadsheetApp.getActiveSheet();
   // Post the greeting variable value to cell A1
-  // of the active sheet in the containing 
+  // of the active sheet in the containing
   //  spreadsheet.
   sheet.getRange('A1').setValue(greeting);
-  // Using the LanguageApp write the 
+  // Using the LanguageApp write the
   //  greeting to cell:
-  // A2 in Spanish, 
-  //  cell A3 in German, 
+  // A2 in Spanish,
+  //  cell A3 in German,
   //  and cell A4 in French.
   sheet.getRange('A2')
         .setValue(LanguageApp.translate(
@@ -95,7 +95,7 @@ function setRangeFontBold (rangeAddress) {
 function call_setCellFontBold () {
   var ui = SpreadsheetApp.getUi(),
       response = ui.prompt(
-                    'Set Range Font Bold', 
+                    'Set Range Font Bold',
                     'Provide a range address',
                     ui.ButtonSet.OK_CANCEL),
       rangeAddress = response.getResponseText();
@@ -105,19 +105,19 @@ function call_setCellFontBold () {
 /**
  * Function to demonstrate how to check
  * the number and types of passed arguments.
- * 
- * 
+ *
+ *
  * @return {undefined}
  */
 function testFunc(arg1, arg2) {
   var i;
-  Logger.log('Number of arguments given: ' + 
+  Logger.log('Number of arguments given: ' +
               arguments.length);
-  Logger.log('Number of arguments expected: ' + 
+  Logger.log('Number of arguments expected: ' +
               testFunc.length);
   for (i = 0; i< arguments.length; i += 1) {
-    Logger.log('The type of argument number ' + 
-               (i + 1) + ' is ' + 
+    Logger.log('The type of argument number ' +
+               (i + 1) + ' is ' +
                       typeof arguments[i]);
   }
 }
@@ -125,7 +125,7 @@ function testFunc(arg1, arg2) {
  * Function that calls "testFunc()"
  * twice with different argument types
  * and different argument counts.
- * 
+ *
  * @return {undefined}
  */
  function call_testFunc() {
@@ -153,7 +153,7 @@ function run_adder() {
 // both arguments are of type number.
 // Throws an error if this is not true.
 function adder(a, b) {
-  if (!(typeof a === 'number' && 
+  if (!(typeof a === 'number' &&
         typeof b === 'number')) {
     throw TypeError(
           'TypeError: Both arguments must be numeric!');
@@ -178,12 +178,12 @@ function run_adder() {
 }
 
 /**
- * Print all string properties to the 
+ * Print all string properties to the
  *  Script Editor Logger
  * @return {undefined}
  */
 function printStringMethods() {
-  var strMethods = 
+  var strMethods =
     Object.getOwnPropertyNames(String.prototype);
   Logger.log('String has ' +
               strMethods.length +
@@ -193,9 +193,9 @@ function printStringMethods() {
 
 /** Concatenate cell values from
 * an input range.
-* Single quotes around concatenated 
+* Single quotes around concatenated
 * elements are optional.
-* 
+*
 * @param {String[]} inputFromRng
 * @param {String} concatStr
 * @param {Boolean} addSingleQuotes
@@ -206,7 +206,7 @@ function CONCATRANGE(inputFromRng, concatStr,
                     addSingleQuotes) {
   var cellValues;
   if (addSingleQuotes) {
-    cellValues = 
+    cellValues =
       inputFromRng.map(
         function (element) {
           return "'" + element + "'";
@@ -219,7 +219,7 @@ function CONCATRANGE(inputFromRng, concatStr,
 /**
  * Return the ID of the active
  *  spreadsheet.
- * 
+ *
  * @return {String}
  * @customfunction
  */
@@ -230,7 +230,7 @@ function GETSPREADSHEETID() {
 /**
  Return the URL of the active
  *  spreadsheet.
- * 
+ *
  * @return {String}
  * @customfunction
  */
@@ -241,7 +241,7 @@ function GETSPREADSHEETURL() {
 /**
   Return the owner of the active
  *  spreadsheet.
- * 
+ *
  * @return {String}
  * @customfunction
  */
@@ -252,19 +252,19 @@ function GETSPREADSHEETOWNER() {
 /**
  Return the viewers of the active
  *  spreadsheet.
- * 
+ *
  * @return {String}
  * @customfunction
  */
 function GETSPREADSHEETVIEWERS() {
-  var ss = 
+  var ss =
     SpreadsheetApp.getActiveSpreadsheet();
   return ss.getViewers().join(', ');
 }
 /**
  Return the locale of the active
  *  spreadsheet.
- * 
+ *
  * @return {String}
  * @customfunction
  */
@@ -276,7 +276,7 @@ function GETSPREADSHEETLOCALE() {
 /**
  * Return French version
  * of English input.
- * 
+ *
  * @param {String} input
  * @return {String}
  * @customfunction
@@ -286,12 +286,13 @@ function ENGLISHTOFRENCH(input) {
     .translate(input, 'en', 'fr');
 }
 
-// Extract an array of all the property names 
+// This doesn't work.
+// Extract an array of all the property names
 //  defined for Spreadsheet and write them to
 //  column A of the active sheet in the active
 //   spreadsheet.
 function testSpreadsheet () {
-  var ss = 
+  var ss =
      SpreadsheetApp.getActiveSpreadsheet(),
       sh = ss.getActiveSheet(),
       i,
@@ -301,9 +302,9 @@ function testSpreadsheet () {
     .setValue('spreadsheet_properties');
   sh.getRange('B7')
     .setFontWeight('bold');
-  /* spreadsheetProperties = 
+  /* spreadsheetProperties =
     ss.getProperties();
-  for (i = 0; 
+  for (i = 0;
        i < spreadsheetProperties.length;
        i += 1) {
     outputRngStart.offset(i, 0)
@@ -318,6 +319,46 @@ function testSpreadsheet () {
   Logger.log("total " + keys.length + "\n" + keys.join('\n'));
 
   // Logger.log(Object.getProperties());
+}
+
+// This doesn't work
+function testSpreadsheet2 () {
+  SpreadsheetApp.getActiveSpreadsheet()
+  .getSelection().getRangeElements()
+  .forEach(function(element)
+  {Logger.log(element.getElement().asText())});
+}
+
+// this works
+// https://stackoverflow.com/questions/64345346/how-to-log-an-object-in-google-apps-script
+function testSpreadsheet3 () {
+  var getAllSelectionNames = () => {
+    var getObjNamesAndValues = x =>
+      Object.getOwnPropertyNames(x).map(k => ({ [k]: x[k] }));
+    var x = SpreadsheetApp.getActiveSpreadsheet().getSelection();
+    if (x) Logger.log(getObjNamesAndValues(x));
+  };
+  getAllSelectionNames();
+  let y = SpreadsheetApp.getActiveSpreadsheet().getSelection();
+  Logger.log(y);
+}
+
+function onEdit(e) {
+  var list = SpreadsheetApp.getActiveSheet()
+  .getRange('B10');
+  var getObjNamesAndValues = x =>
+    Object.getOwnPropertyNames(x).map(k => ({ [k]: x[k] }));
+  var x = e
+    , getPropertiesNames = Object.getOwnPropertyNames(x.range);
+  if (x) list.setValue(getObjNamesAndValues(x));
+  list.offset(1,0).setValue(Object.getOwnPropertyNames(x).toString());
+  list.offset(2,0).setValue(getPropertiesNames.toString());
+  for (let i = 3;
+      i < getPropertiesNames.length + 3;
+      i += 1) {
+        list.offset(i, 0)
+        .setValue(getPropertiesNames[i]);
+      }
 }
 
 
