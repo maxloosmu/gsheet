@@ -22,6 +22,9 @@ Legal Test 16 problem fixed and goals achieved.
 
 New problem: Output of Example 13 in Constitutive Rules has 3 predicates.  Current implementation of Example 13 delivers 4 predicates because one of the predicate is the checking predicate.
 
-Tentative solution to be implemented: Create a summary.history object based on the JavaScript Map object to store positions of all predicates, so that there is control over checking predicate conclusion of IF parentheses statements.  Map object's Key will be a array object containing position values.  Map object's Values will be the predicates.  summary.furthestRow and summary.furthestCol properties can be recorded.
+Tentative solution to be implemented: Create a summary.history object based on the JavaScript Map object to store positions of all predicates, so that there is control over checking predicate conclusion of IF parentheses statements.  Map object's Key will be a array object containing position values.  Map object's Values will be the predicates.  summary.topLeft, summary.furthestRow and summary.furthestCol properties can be recorded.
+
+Reworked solution: Due to requirement for top left of every IF statement to contain a summary logic, the new idea is to use an Array object `h.history` instead of a Map object.  Each element of Array will be [col, keyword, predicate], so it's an array of arrays.  The index of the Array will be the row number.
 ### Legal Test 18 Summary
-In progress...
+Goals: To use `sheet.getRange` and `getA1Notation` on the elements of the `h.history` Array.
+
