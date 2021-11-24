@@ -46,6 +46,61 @@ function parseWords(c, summary, h) {
     processAndOr(c, summary, h);
   }
 }
+function processHistory(h, sheet) {
+  // process the h.history Array.
+  let restart = true;
+  let rowBegin = 0;
+  let rowStop = 0;
+  let numOfRows = 0
+  let buildRange = "";
+  let rangeString = "";
+  let columnNow = 1;
+  let lastRow = 1;
+  for (const element of h.history) {
+    if (element != null) {
+      lastRow = h.history.indexOf(element);
+    }
+  }
+  //sheet.getRange(1, 1).setValue(columnNow <= h.farCol);
+
+  while (columnNow <= h.farCol) {
+    sheet.getRange(1, 1).setValue(columnNow);
+    /*for (let count=1; count<=lastRow; count++) {
+      let kw = h.history[count][1];
+      sheet.getRange(1, 1).setValue(count);
+      if (kw == "IF" || kw == "AND" || kw == "OR") {
+        let [col, keyword, predicate] = h.history[count];
+        sheet.getRange(count, columnNow+4)
+          .setValue(h.history[count].toString());
+        if (columnNow==col && restart && keyword=="IF"
+          && rowBegin<count) {
+          restart = false;
+          rowBegin = count;
+        }
+        else if (columnNow==col && !restart) {
+          rowStop = getFurthest(rowStop, count);
+          numOfRows = rowStop - rowBegin + 1;
+          buildRange = sheet.getRange(rowBegin,
+            columnNow+1, numOfRows, 1);
+          rangeString = buildRange.getA1Notation();
+          sheet.getRange(rowBegin-1, columnNow)
+            .setValue("=" + keyword.toLowerCase()
+            + "(" + rangeString + ")");
+        }
+      }
+    }*/
+    columnNow++;
+    restart = true;
+    rowBegin = 0;
+    rowStop = 0;
+  }
+}
+function getFurthest(prevIndex, index) {
+  if (prevIndex < index) {
+    prevIndex = index;
+  }
+  return prevIndex;
+}
 function processIf(c, summary, h) {
   let rightOfIf = c.offset(0,1);
   let predValue = rightOfIf.getValue();
@@ -80,22 +135,22 @@ function processAndOr(c, summary, h){
   if (boxRightOfIf=="CHECKBOX") {
     summary.push(` ${cvalue} ${predValue}`);
     let [nextCell, endParse, cellCol] = getNextCell(c);
-    const closeBracket = function() {
-      while (cellCol<0) {
-        summary.push(")");
-        cellCol++;
-      }
-    }
     if (!endParse && cellCol>=0) {
       parseWords(nextCell, summary, h);
     }
     else if (!endParse && cellCol<0) {
-      closeBracket();
+      closeBracket(cellCol, summary);
       parseWords(nextCell, summary, h);
     }
     else if (endParse) {
-      closeBracket();
+      closeBracket(cellCol, summary);
     }
+  }
+}
+function closeBracket(cellCol, summary) {
+  while (cellCol<0) {
+    summary.push(")");
+    cellCol++;
   }
 }
 function getNextCell(cell) {
@@ -122,6 +177,7 @@ function getNextCell(cell) {
   return [nextCell, endParse, cellCol];
 }
 function drawIfOr(c) {
+  c.offset(0,1,1,9).clearFormat();
   c.setHorizontalAlignment("right");
   if (c.offset(0,1).isBlank()) {
     c.offset(0,1).insertCheckboxes()
@@ -135,13 +191,13 @@ function drawIfOr(c) {
   }
 }
 function drawAnd(c) {
+  c.offset(0,1,1,4)
+    .setBorder(true,true,false,false,false,false,
+    "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
   c.setHorizontalAlignment("right");
   if (c.offset(0,1).isBlank()) {
     c.offset(0,1).insertCheckboxes()
       .setBorder(null,true,false, false, false,false,
-      "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
-    c.offset(0,1,1,4)
-      .setBorder(true,true,false,false,false,false,
       "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
     c.setBorder(null,null,null,true,false,false,
       "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
@@ -149,46 +205,4 @@ function drawAnd(c) {
   if (c.offset(0,2).isBlank()) {
     c.offset(0,2).setValue("some condition");
   }
-}
-function processHistory(h, sheet) {
-  // process the h.history Array.
-  let restart = true;
-  let rowBegin = 0;
-  let rowStop = 0;
-  let numOfRows = 0
-  let buildRange = "";
-  let rangeString = "";
-  let columnNow = 1;
-  while (columnNow <= h.farCol) {
-    for (const element of h.history) {
-      if (element != null) {
-        let row = h.history.indexOf(element);
-        let [col, keyword, predicate] = element;
-        if (columnNow==col && restart && keyword=="IF"
-          && rowBegin<row) {
-          restart = false;
-          rowBegin = row;
-        }
-        if (columnNow==col && !restart) {
-          rowStop = getFurthest(rowStop, row);
-          numOfRows = rowStop - rowBegin + 1;
-          buildRange = sheet.getRange(rowBegin,
-            columnNow+1, numOfRows, 1);
-          rangeString = buildRange.getA1Notation();
-          sheet.getRange(rowBegin-1, columnNow)
-            .setValue("=" + keyword.toLowerCase()
-            + "(" + rangeString + ")");
-        }
-      }
-    }
-    columnNow++;
-    restart = true;
-    rowStop = 0;
-  }
-}
-function getFurthest(prevIndex, index) {
-  if (prevIndex < index) {
-    prevIndex = index;
-  }
-  return prevIndex;
 }
