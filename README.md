@@ -25,5 +25,6 @@ New Problem:
 #### Legal Test 20 Summary
 Problem identified:
 The array `h.history` cannot store historic values.  Evidence for this is recorded in the comments of Legal Test 20.js.  The Google sheet is also available for testing at: https://docs.google.com/spreadsheets/d/1TSK-qezGqMNDOJ1wDefcrLeAbIbb7dwnUzyP2MUcwo4/edit#gid=0.
+
 Goals for Legal Test 21:
 To find a way to parse the keywords without storing them.
