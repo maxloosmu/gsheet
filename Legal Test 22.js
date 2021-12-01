@@ -6,16 +6,36 @@ class History {
 function onEdit(e) {
   // Respond to Edit events on spreadsheet.
   let c = e.range;
-  if (c.getBackground() != "#ffffff") { return; }
   let sheet = SpreadsheetApp.getActiveSheet();
   let h = new History();
-  drawWords(c);
-  let startCell = findStart(c);
-  sheet.getRange(1, 1).setValue(startCell.getValue());
-  h = scanDownwards(startCell, h);
-  sheet.getRange(1, 2).setValue(c.getA1Notation());
-  testHistory(h, sheet);
-  processHistory(h, sheet);
+  let goodLayout;
+  goodLayout = checkLayout(c);
+  if (goodLayout) {
+    drawWords(c);
+    let startCell = findStart(c);
+    sheet.getRange(1, 1).setValue(startCell.getValue());
+    h = scanDownwards(startCell, h);
+    sheet.getRange(1, 2).setValue(c.getA1Notation());
+    processHistory(h, sheet);
+    testHistory(h, sheet);
+  }
+  else return;
+}
+function checkLayout(c) {
+  if (c.getBackground() != "#ffffff") { return false; }
+  if (isKeyword(c.getValue())) {
+    if (c.getColumnIndex() < 2) {
+      SpreadsheetApp.getUi().alert(
+        "ERROR: Keywords must be entered from column B onwards");
+      return false;
+    }
+    if (c.getRowIndex() < 3) {
+      SpreadsheetApp.getUi().alert(
+        "ERROR: Keywords must be entered from row 3 onwards");
+      return false;
+    }
+  }
+  return true;
 }
 function drawWords(c) {
   // Identify keywords for formatting.
@@ -41,7 +61,7 @@ function findStart(c) {
   while (nextCol < maxCount) {
     let getTopRight = c.offset(-1, nextCol);
     let gtr = getTopRight.getValue();
-    if (checkKeyword(gtr)) {
+    if (isKeyword(gtr)) {
       c = getTopRight;
       return findStart(c);
     }
@@ -50,14 +70,14 @@ function findStart(c) {
   if (nextCol == maxCount) {
     let getTopLeft = c.offset(-1, -1);
     let gtl = getTopLeft.getValue();
-    if (checkKeyword(gtl)) {
+    if (isKeyword(gtl)) {
       c = getTopLeft;
       return findStart(c);
     }
   }
   return c;
 }
-function checkKeyword(cValue){
+function isKeyword(cValue){
   return (cValue=="IF" || cValue=="OR"
     || cValue=="AND" || cValue=="WHEN"
     || cValue=="MEANS" || cValue=="IS");
@@ -70,7 +90,7 @@ function scanDownwards(c, h) {
   do {
     let nextCellBelow = c.offset(1,cellCol);
     let ncb = nextCellBelow.getValue();
-    if (checkKeyword(ncb)) {
+    if (isKeyword(ncb)) {
       c = nextCellBelow;
       return scanDownwards(c, h);
     }
@@ -150,11 +170,13 @@ function drawIfWhenTop(c) {
     == "CHECKBOX") {
     return c;
   }
-  let cValue = c.getValue();
-  c.clear();
-  c.insertCheckboxes();
-  c.offset(1,0).setValue(cValue);
-  return c.offset(1,0);
+  else {
+    let cValue = c.getValue();
+    c.clear();
+    c.insertCheckboxes();
+    c.offset(1,0).setValue(cValue);
+    return c.offset(1,0);
+  }
 }
 function drawIfWhenOr(c) {
   c.offset(0,0,1,9).clearFormat();

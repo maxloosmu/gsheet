@@ -46,8 +46,9 @@ Next Steps:
 Implement a forward processing of keywords from the start keyword.  Possibility of reusing the getNextCell function from Legal Test 19.
 
 Result:
-Backwards search using `findStart` and forward scan using `scanDownwards` implemented successfully.  `h.history` now works not because it records keywords between edits, but by recording all the keywords in the Legal Spreadsheet when they are all parsed from scratch for every edit.  Implemented processing for "IF", "OR", "AND", "WHEN" keywords.
-### Legal Test 22 to 23 Summary
+- Backwards search using `findStart` and forward scan using `scanDownwards` implemented successfully.  `h.history` now works not because it records keywords between edits, but by recording all the keywords in the Legal Spreadsheet when they are all parsed from scratch for every edit.  Implemented processing for "IF", "OR", "AND", "WHEN" keywords.
+- Reimplemented drawing of "IF", "WHEN" to add new line for topLeft input.  Adding new line simply means deleting the keyword and printing the keyword one line down to avoid the insert line problem of GAS.  Also ensure that if topLeft cell contains checkbox, do not print keyword one line down.
+### Legal Test 22 to 24 Summary
 Implementing "Features and UI specifications" 3 and 4 again, with the additional 6 and 8:
 
 "Similarly, a constitutive rule needs a checkbox to span the children."
@@ -55,5 +56,19 @@ Implementing "Features and UI specifications" 3 and 4 again, with the additional
 "Handle the situation where the user adds a new row and then writes in a new OR/AND/UNLESS; currently this creates a checkbox to the right; need to update checkbox above."
 #### Legal Test 22 Summary
 Goals:
-Implement "MEANS", "IS", "IT IS", "UNLESS" with topLeft logic equation.
+- Implement ERROR alert if keywords entered in column A or rows 1, 2.
+
+Problem discovered:
+- Before ERROR alert is implemented, "IF", "WHEN" fails.  This happened in "Legal Test 21" too.
+
+Resolution:
+- In Legal Test 23, reduce code in "Legal Test 21" to bare minimum "IF", "WHEN" and "OR" to troubleshoot.
+#### Legal Test 23 Summary
+Resolutions:
+- ERROR alerts are tested to be working.
+- In the `drawIfWhenTop` function, `getDataValidation` of `topCell` requires testing for `not null` outcome before applying `getCriteriaType` to check for "CHECKBOX" string.
+#### Legal Test 24 Summary
+Goals:
+- Reattach all the requisite functions and test.
+- Reimplement "MEANS", "IS" with topLeft logic equation.
 
