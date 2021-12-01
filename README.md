@@ -66,7 +66,7 @@ Resolution:
 #### Legal Test 23 Summary
 Resolutions:
 - ERROR alerts are tested to be working.
-- In the `drawIfWhenTop` function, `getDataValidation` of `topCell` requires testing for `not null` outcome before applying `getCriteriaType` to check for "CHECKBOX" string.
+- In the `drawIfWhenTop` function, `getDataValidation` of `topCell` requires testing for `not null` outcome before applying `getCriteriaType` to check for "CHECKBOX" string.  The reason why the problem arises in Legal Test 21, is because I've erroneously amended that file before transferring to Legal Test 22.
 #### Legal Test 24 Summary
 Goals:
 - Reattach all the requisite functions and test.
