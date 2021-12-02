@@ -69,6 +69,11 @@ Resolutions:
 - In the `drawIfWhenTop` function, `getDataValidation` of `topCell` requires testing for `not null` outcome before applying `getCriteriaType` to check for "CHECKBOX" string.  The reason why the problem arises in Legal Test 21, is because I've erroneously amended that file before transferring to Legal Test 22.
 #### Legal Test 24 Summary
 Goals:
-- Reattach all the requisite functions and test.
-- Reimplement "MEANS", "IS" with topLeft logic equation.
+- Reimplement "MEANS", "IS" drawing function.
+- Reimplement "IT IS" drawing function.
+- Reattach all the requisite drawing and processing functions and test.
+
+Problems found:
+- When processing "IF", "WHEN", "IS", and "MEANS", the topLeft logic formula uses the logic of the last condition.  How should we handle multiple conditions?
+- How to implement "UNLESS" condition in A1 notation, which means "AND NOT"?
 
