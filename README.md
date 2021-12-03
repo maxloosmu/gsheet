@@ -49,11 +49,13 @@ Result:
 - Backwards search using `findStart` and forward scan using `scanDownwards` implemented successfully.  `h.history` now works not because it records keywords between edits, but by recording all the keywords in the Legal Spreadsheet when they are all parsed from scratch for every edit.  Implemented processing for "IF", "OR", "AND", "WHEN" keywords.
 - Reimplemented drawing of "IF", "WHEN" to add new line for topLeft input.  Adding new line simply means deleting the keyword and printing the keyword one line down to avoid the insert line problem of GAS.  Also ensure that if topLeft cell contains checkbox, do not print keyword one line down.
 ### Legal Test 22 to 24 Summary
-Implementing "Features and UI specifications" 3 and 4 again, with the additional 6 and 8:
+Implementing "Features and UI specifications" 3 and 4 again, with the additional 6, 8 and 11:
 
 "Similarly, a constitutive rule needs a checkbox to span the children."
 
 "Handle the situation where the user adds a new row and then writes in a new OR/AND/UNLESS; currently this creates a checkbox to the right; need to update checkbox above."
+
+"For future work: Sanity check that the "AND" matches the right kind of border line, and the "OR" does too. This is hard because JS doesn't give us access easily to read the border, so maybe just always redraw it."
 #### Legal Test 22 Summary
 Goals:
 - Implement ERROR alert if keywords entered in column A or rows 1, 2.
@@ -77,3 +79,56 @@ Problems found:
 - When processing "IF", "WHEN", "IS", and "MEANS", the topLeft logic formula uses the logic of the last condition.  How should we handle multiple conditions?
 - How to implement "UNLESS" condition in A1 notation, which means "AND NOT"?
 
+Resolution:
+- Multiple consecutive conditions consisting of all "OR" or all "AND" works, but if there's a mix, the "OR" and "AND" will have to be separated with another "IF".
+```
+    =
+    IF =
+       IF true
+       AND true
+       AND true
+    OR true
+    OR true
+```
+- "UNLESS" condition implemented in `h.history` by changing the keyword "UNLESS" to "AND", and then negating the predicate.
+### BabyLegalSSv0.9.0 Overview
+Goals (Upcoming Features and UI specification):
+- Feature 8: Handle the situation where the user adds a new row and then writes in a new OR/AND/UNLESS; currently this creates a checkbox to the right; need to update checkbox above.
+- Feature 9: Handle the situation where the user deletes a row.
+- Feature 11: Sanity check that the "AND" matches the right kind of border line, and the "OR" does too. This is hard because JS doesn't give us access easily to read the border, so maybe just always redraw it.
+#### BabyLegalSSv0.9.0.0 Summary
+Goals (Features 8, 9):
+- Test onChange function.
+- When "IF", "WHEN", "IS", and "MEANS" keywords are deleted from a cell, ensure that checkbox above keyword cell is cleared of equation.
+- Currently, `findStart`, `scanDownwards`, `processHistory` function only works within each code block of consecutive keywords upon each edit.  Use onChange function to react to deletion of rows.  Insertion of rows works when user has keyed in a new keyword in the inserted row, but onChange will likely react to that too.
+
+Results:
+- Setting up onChange function requires configuring GAS options, which has been done.
+- "IF", "WHEN", "IS", and "MEANS" keyword deletion with checkbox above the keyword cell cleared done.
+
+Problem:
+- onChange setup with a fixed range of cells to scan and update.  However, using a `drawTeeOverIsMeans` drawing, when the last row of the drawing with the "OR" keyword is deleted, the value in the checkbox above the keyword recurringly flip flopped between the value before deletion, and an erroneous value post deletion.
+
+Possible Solutions:
+- In BabyLegalSSv0.9.0.1, test the new function `forEachCellInRange` to ensure it works properly.
+- Think up some ways to inject alerts into the code to signpost the `startProcessing` function to ensure correctness of values at various steps of the function.
+
+Overlaps with BabyLegalSSv0.9.0.1:
+- I erroneously coded changes and tests to BabyLegalSSv0.9.0.0.
+
+#### BabyLegalSSv0.9.0.1 Summary
+Results of tests:
+- `forEachCellInRange` is working ok.
+- Using SpreadsheetApp.getUi().alert, it is discovered that onEdit will clash with onChange because both react to deletion of rows.
+
+Solutions:
+- Avoid using onChange, and amended `processHistory` to include a check for keywords "OR" and "AND" before updating the cell above "IF", "WHEN", "MEANS", "IS" with a logic equation.  The topLeft equation is deleted if there is no "OR" or "AND".
+- Amended `scanDownwards` to check for keywords before updating `h.history`.
+
+#### BabyLegalSSv0.9.0.2 Summary
+Updates:
+- Removed `forEachCellInRange` and `onChange`.
+- Features 8, 9 implemented and tested, but admittedly, this implementation and test is premised upon an unknown working of the cell reference returned upon deletion or insertion of a row.  For some inexplicable reason, the topLeft cell of the code block is returned upon insertion or deletion.
+
+#### BabyLegalSSv0.9.0.3 Summary
+- in progress
