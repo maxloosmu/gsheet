@@ -119,10 +119,10 @@ Overlaps with BabyLegalSSv0.9.0.1:
 #### BabyLegalSSv0.9.0.1 Summary
 Results of tests:
 - `forEachCellInRange` is working ok.
-- Using SpreadsheetApp.getUi().alert, it is discovered that onEdit will clash with onChange because both react to deletion of rows.
+- Using `SpreadsheetApp.getUi().alert`, it is discovered that onEdit will clash with onChange because both react to deletion of rows.
 
 Solutions:
-- Avoid using onChange, and amended `processHistory` to include a check for keywords "OR" and "AND" before updating the cell above "IF", "WHEN", "MEANS", "IS" with a logic equation.  The topLeft equation is deleted if there is no "OR" or "AND".
+- Avoid using onChange, and amended `processHistory` to include a check for keywords "OR" and "AND" before updating the cell above "IF", "WHEN", "MEANS", "IS" with a logic equation (the topLeft equation).  This topLeft equation is deleted if there is no "OR" or "AND".
 - Amended `scanDownwards` to check for keywords before updating `h.history`.
 
 #### BabyLegalSSv0.9.0.2 Summary
@@ -131,4 +131,10 @@ Updates:
 - Features 8, 9 implemented and tested, but admittedly, this implementation and test is premised upon an unknown working of the cell reference returned upon deletion or insertion of a row.  For some inexplicable reason, the topLeft cell of the code block is returned upon insertion or deletion.
 
 #### BabyLegalSSv0.9.0.3 Summary
-- in progress
+Goals:
+- To implement Feature 11.
+
+#### BabyLegalSSv0.9.0.4 Summary
+Goals:
+- To do some research into how GAS onEdit responds to insertions and deletions of rows, so that the issue raised in "BabyLegalSSv0.9.0.2 Summary" may be resolved.
+
