@@ -19,6 +19,9 @@ function startProcessing(c, h, sheet) {
   sheet.getRange(1, 1).setValue(startCell.getValue());
   [c, h] = scanDownwards(startCell, h);
   sheet.getRange(1, 2).setValue(c.getA1Notation());
+  // Draw bridge only after scanDownwards
+  // because h.history required for drawing
+  drawBridgeIfAndOr(h, sheet);
   processHistory(h, sheet);
   sheet.getRange(1, 3).setValue(h.history.toString());
   return c;
@@ -72,18 +75,83 @@ function scanDownwards(c, h) {
   } while (cellCol >= columnLimit)
   return [c, h];
 }
+function drawBridgeIfAndOr(h, sheet) {
+  // SpreadsheetApp.getUi().alert("drawBridgeIfAndOr");
+  let restart = true;
+  let rowBegin = rowStop = numOfRows = 0;
+  let buildRange = rangeString = "";
+  let columnNow = farCol = 1;
+  // Get furthest column.
+  for (const element of h.history) {
+    if (element != null) {
+      farCol = getFurthest(farCol, element[0]);
+    }
+  }
+  columnNow = farCol;
+  while (columnNow > 1) {
+    // SpreadsheetApp.getUi().alert(columnNow);
+    for (const element of h.history) {
+      if (element != null) {
+        let row = h.history.indexOf(element);
+        // SpreadsheetApp.getUi().alert("row = " + row);
+        let [col, keyword, predicate] = element;
+        // Determine start of code block.
+        if (columnNow==col && restart &&
+          (keyword=="IF" || keyword=="WHEN"
+          || keyword=="MEANS" || keyword=="IS")
+          && rowBegin<row) {
+          restart = false;
+          rowBegin = row;
+        }
+        // Parse code block and draw bridge.
+        if (columnNow==col && !restart) {
+          rowStop = getFurthest(rowStop, row);
+          numOfRows = rowStop - rowBegin + 1;
+          buildRange = sheet.getRange(rowBegin,
+            columnNow, numOfRows, 1);
+          // rangeString = buildRange.getA1Notation();
+          // SpreadsheetApp.getUi().alert(
+          //   rangeString + ", " + keyword);
+          if (keyword=="OR") {
+            // SpreadsheetApp.getUi().alert(keyword);
+            buildRange.setBorder(false,false,false,true,false,false,
+              "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+          }
+          else if (keyword=="AND") {
+            // SpreadsheetApp.getUi().alert(
+            //   keyword + ", " + row + ", " + col);
+            sheet.getRange(row, col).offset(0,1,1,2)
+              .setBorder(true,true,false,false,false,false,
+              "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+            buildRange.setBorder(false,false,false,true,false,false,
+              "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+          }
+        }
+      }
+    }
+    columnNow--;
+    // SpreadsheetApp.getUi().alert(columnNow);
+    restart = true;
+    rowStop = rowBegin = 0;
+  }
+}
 function processHistory(h, sheet) {
   // Process the h.history Array.
   let restart = true;
   let rowBegin = rowStop = numOfRows = 0;
   let buildRange = rangeString = "";
   let columnNow = farCol = 1;
-  // Get furthest column and convert the keyword
+  // Get furthest column.
+  for (const element of h.history) {
+    if (element != null) {
+      farCol = getFurthest(farCol, element[0]);
+    }
+  }
+  // Convert the keyword
   // "UNLESS" to "AND", and its predicate to
   // NOT predicate.
   for (const element of h.history) {
     if (element != null) {
-      farCol = getFurthest(farCol, element[0]);
       if (element[1]=="UNLESS") {
         element[1] = "AND";
         element[2] = !element[2];
