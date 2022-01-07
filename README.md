@@ -51,8 +51,14 @@ Link for trying out the Google Sheet:
 Goals:
 - To do some research into how GAS onEdit responds to insertions and deletions of rows to try to resolve the issue raised in "BabyLegalSSv0.9.0.2 Summary".  This issue may not be resolvable because this problem is built into GAS: https://stackoverflow.com/questions/13718269/google-apps-script-how-to-get-the-deleted-row-in-onedit-script-or-ondelete.
 
-Outcome of Research:
+Outcome of Research (Part 1):
 - Reference webpage: https://developers.google.com/apps-script/guides/triggers/events#change
 - The webpage indicates that the `changeType` option can be used to detect changes to the Google Sheet, but there's no `range` option to indicate where the rows are inserted or deleted.  To resolve this, it will have to made permanent that a fixed range of cells may have to be scanned every time there's a change to identify the insertions and deletions.  This means that the spreadsheet will only allow inserts and deletes in those cells.  In addition to this limitation, there's also the problem of conflicts between onEdit and onChange functions in responding at the same time to the same deletion and insertion event, thereby leading to race conditions from within GAS.  This race condition will not be resolvable at an end user programmer's coding level, and will require Google's GAS creators to resolve.
 - A choice will have to be made as to whether only a specific area of the spreadsheet is allowed for editing.  If this is confirmed, then an attempt can be made to remove the onEdit function and replace with a onChange function to avoid race conditions, but that will also require a major rewrite of the entire script.  I'm uncertain as of now whether this is doable.
 
+Outcome of Research (Part 2):
+- In Chapter 13 "Asynchronous JavaScript" of the book "JavaScript - The Definitive Guide" Seventh Edition, I found the possibility of adding the `addEventListener` method to Google Sheet cells, but upon further googling about it, I could find no appropriate events for deleting or inserting cells.  Code from https://developer.mozilla.org/en-US/docs/Web/Events and https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/contentdelete_event is tested in Legal Test 25.
+
+#### Legal Test 25 Summary
+- A brief test is done in Google Sheets for the `addEventListener` method with the event type `contentdelete`.  The code was implemented without any functions.  The results show no response from the active Google Sheet upon inserting and then deleting contents from the cell.  This shows that the code editor of Google Sheets can only respond predefined events based on functions defined in the code editor, or run directly from the functions because the RUN button in the code editor can only run functions.
+- When run from within a function, an error is thrown indicating that the `addEventListener` method is not a function.  Googling about it shows that Google Sheets/Google Apps Script has no `addEventListener` method.
