@@ -60,5 +60,15 @@ Outcome of Research (Part 2):
 - In Chapter 13 "Asynchronous JavaScript" of the book "JavaScript - The Definitive Guide" Seventh Edition, I found the possibility of adding the `addEventListener` method to Google Sheet cells, but upon further googling about it, I could find no appropriate events for deleting or inserting cells.  Code from https://developer.mozilla.org/en-US/docs/Web/Events and https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/contentdelete_event is tested in Legal Test 25.
 
 #### Legal Test 25 Summary
-- A brief test is done in Google Sheets for the `addEventListener` method with the event type `contentdelete`.  The code was implemented without any functions.  The results show no response from the active Google Sheet upon inserting and then deleting contents from the cell.  This shows that the code editor of Google Sheets can only respond predefined events based on functions defined in the code editor, or run directly from the functions because the RUN button in the code editor can only run functions.
+- A brief test is done in Google Sheets for the `addEventListener` method with the event type `contentdelete`.  The code was implemented without any functions.  The results show no response from the active Google Sheet upon inserting and then deleting contents from the cell.  This shows that the code editor of Google Sheets can only respond to predefined events based on functions defined in the code editor, or run directly from the functions because the RUN button in the code editor can only run functions.
 - When run from within a function, an error is thrown indicating that the `addEventListener` method is not a function.  Googling about it shows that Google Sheets/Google Apps Script has no `addEventListener` method.
+
+#### BabyLegalSSv0.9.1.0 Summary
+Goals
+- Since I could not determine the feasibility of using the `onChange` function unless I try it, BabyLegalSSv0.9.1.0 will be used to test this function.
+
+Attempts
+- I tried to utilise on `onEdit` and `onChange` functions in the same code, with the help of timer functions to avoid conflicts between the processing of both functions.
+- Timer code is taken from: https://stackoverflow.com/questions/12711072/how-to-pause-app-scripts-until-spreadsheet-finishes-calculation
+- Function `scanDoc` is created to check the first 100 rows at the first 3 columns for the keyword IF.  Upon detecting keyword IF in a row, the next row is checked for the keyword IF.  If no IF is detected in next row, the current row's keyword's checkbox is blanked.  If a IF is detected in next row, the function `startProcessing` is called to update the current row's keyword's checkbox's value.
+
