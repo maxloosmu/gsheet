@@ -8,48 +8,48 @@ Legal Spreadsheet Logo IMAGE
 
 **Company Name**
 
-### Content
+## Content
 
 * About the Legal Spreadsheet
 * Setup
 * Key functions
 * Appendix - Glossary
 
-### About the Legal Spreadsheet
+## About the Legal Spreadsheet
 
 The Legal Spreadsheet helps users to automate their legal writing.
 
-### Setup
+## Setup
 
-#### Signup
+### Signup
 
 Users must first sign up for a Google Account.
 
-#### Signin and Access
+### Signin and Access
 
 * Users must sign in to their Google Account.
 * Access the Legal Spreadsheet in the Google Drive.
 
-#### Setting
+### Setting
 
 * Click on Extensions in the header and select Apps Script
 * Select Triggers, select "create a new trigger", and activate it
 
-### Key functions
+## Key functions
 
-#### the EVERY keyword
+### the EVERY keyword
 
 Type in EVERY in a cell to see the added words and layout effects.
 
-#### the IF and WHEN keywords
+### the IF and WHEN keywords
 
 Type in IF or WHEN in a cell to see the added words and layout effects.
 
-#### the MEANS and IS keywords
+### the MEANS and IS keywords
 
 Type in MEANS or IS in a cell to see the added words and layout effects.
 
-### Appendix - Glossary
+## Appendix - Glossary
 
 constitutive rules - rules that make possible new forms of behavior
 
