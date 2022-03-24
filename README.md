@@ -76,3 +76,4 @@ Results and Remarks
 - Features 8 and 9 now tested and works.
 - Feature 11 is about appearance and has been implemented based on my understanding of the requirement.
 - Features 8 and 9 were the last to be implemented because of the limitations of Google Apps Script (GAS).  The GAS interpreter does not provide a ready means of scheduling the `onEdit` and `onChange` triggered processes, so a timer function has to be implemented as a scheduling hack to queue the 2 triggered processes.
+
