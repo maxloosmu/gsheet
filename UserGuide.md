@@ -10,13 +10,13 @@ Legal Spreadsheet Logo IMAGE
 
 ## Content
 
-* About the Legal Spreadsheet
-* Setup
-* Key functions
-* Appendix A - Glossary
-* Appendix B - Trademarks
+- [About the Legal Spreadsheet](#about)
+- [Setup](#setup)
+- [Key functions](#key-functions)
+* [Appendix A - Glossary]
+* [Appendix B - Trademarks]
 
-## About the Legal Spreadsheet
+## About the Legal Spreadsheet<a name="about" />
 
 The Legal Spreadsheet helps users to automate their legal writing.
 
@@ -28,15 +28,19 @@ Users must first sign up for a Google:tm: Account.
 
 ### Signin and Access
 
-* Users must sign in to their Google:tm: Account.
-* Access the Legal Spreadsheet in the Google:tm: Drive.
+<ol>
+  <li>Users must sign in to their Google:tm: Account.</li>
+  <li>Access the Legal Spreadsheet in the Google:tm: Drive.</li>
+</ol>
 
 ### Setting
 
-* Click on Extensions in the header and select Apps Script
-* Select Triggers, select "create a new trigger", and activate it
+<ol>
+  <li>Click on Extensions in the header and select Apps Script</li>
+  <li>Select Triggers, select "create a new trigger", and activate it</li>
+</ol>
 
-## Key functions
+## Key functions<a name="key-functions" />
 
 ### the EVERY keyword
 
@@ -50,10 +54,10 @@ Type in IF or WHEN in a cell to see the added words and layout effects.
 
 Type in MEANS or IS in a cell to see the added words and layout effects.
 
-## Appendix A - Glossary
+## Appendix A - Glossary<a name="glossary" />
 
 constitutive rules - rules that make possible new forms of behavior
 
-## Appendix B - Trademarks
+## Appendix B - Trademarks<a name="trademarks" />
 
 Google:tm: is a registered trademark of Google Inc.
