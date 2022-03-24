@@ -56,4 +56,4 @@ constitutive rules - rules that make possible new forms of behavior
 
 ## Appendix B - Trademarks
 
-Google:tm:
+Google:tm: is a registered trademark of Google Inc.
