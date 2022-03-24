@@ -13,7 +13,8 @@ Legal Spreadsheet Logo IMAGE
 * About the Legal Spreadsheet
 * Setup
 * Key functions
-* Appendix - Glossary
+* Appendix A - Glossary
+* Appendix B - Trademarks
 
 ## About the Legal Spreadsheet
 
@@ -23,12 +24,12 @@ The Legal Spreadsheet helps users to automate their legal writing.
 
 ### Signup
 
-Users must first sign up for a Google Account.
+Users must first sign up for a Google:tm: Account.
 
 ### Signin and Access
 
-* Users must sign in to their Google Account.
-* Access the Legal Spreadsheet in the Google Drive.
+* Users must sign in to their Google:tm: Account.
+* Access the Legal Spreadsheet in the Google:tm: Drive.
 
 ### Setting
 
@@ -49,7 +50,10 @@ Type in IF or WHEN in a cell to see the added words and layout effects.
 
 Type in MEANS or IS in a cell to see the added words and layout effects.
 
-## Appendix - Glossary
+## Appendix A - Glossary
 
 constitutive rules - rules that make possible new forms of behavior
 
+## Appendix B - Trademarks
+
+Google:tm:
