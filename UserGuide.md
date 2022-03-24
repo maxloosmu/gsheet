@@ -11,10 +11,10 @@ Legal Spreadsheet Logo IMAGE
 ## Content
 
 - [About the Legal Spreadsheet](#about)
-- [Setup](#setup)
+- [Setup](#Setup)
 - [Key functions](#key-functions)
-* [Appendix A - Glossary]
-* [Appendix B - Trademarks]
+- [Appendix A - Glossary](#glossary)
+- [Appendix B - Trademarks](#trademarks)
 
 ## About the Legal Spreadsheet<a name="about" />
 
