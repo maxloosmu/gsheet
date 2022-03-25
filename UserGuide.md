@@ -12,7 +12,7 @@ Legal Spreadsheet Logo IMAGE
 
 - [About the Legal Spreadsheet](#about)
 - [Setup](#Setup)
-- [Key functions](#key-functions)
+- [Keywords](#keywords)
 - [Appendix A - Glossary](#glossary)
 - [Appendix B - Trademarks](#trademarks)
 
@@ -46,7 +46,7 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
   <img src="images/SelectOnChange.png" alt="SelectOnChange" width="300">
 </ol>
 
-## Key functions<a name="key-functions" />
+## Keywords<a name="keywords" />
 
 | **Type the Keyword** | **Google Sheet Will Output This Layout** |
 | --- | --- |
