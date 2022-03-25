@@ -12,6 +12,7 @@ Legal Spreadsheet Logo IMAGE
 
 - [About the Legal Spreadsheet](#about)
 - [Setup](#Setup)
+  - [Signup](#signup)
 - [Keywords](#key-functions)
 - [Appendix A - Glossary](#glossary)
 - [Appendix B - Trademarks](#trademarks)
@@ -24,11 +25,11 @@ The Legal Spreadsheet helps users to automate their legal writing.
 
 Users must have these setups to access the Legal Spreadsheet and use its keyword functions.
 
-### Signup
+### Signup<a name="signup" />
 
 Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=en) for a Google:tm: Account.
 
-### Signin and Access
+### Signin and Access<a name="signin" />
 
 <ol>
   <li>Users must <a href="https://myaccount.google.com">sign in</a> to their Google:tm: Account.</li>
@@ -36,7 +37,7 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
   <li>Access the Legal Spreadsheet in the Google:tm: Drive.</li>
 </ol>
 
-### Setting
+### Settings<a name="settings" />
 
 These settings are done in the Legal Spreadsheet Google Sheet to enable the keyword functions.
 
