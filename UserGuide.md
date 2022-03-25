@@ -77,7 +77,7 @@ These settings are done in the Legal Spreadsheet Google Sheet to enable the keyw
 | IF, OR, AND<sup>[2](#footnote2)</sup> | ![type IF, OR, AND in the Legal Spreadsheet](images/IFORAND.png) |
 | IF, IF, OR, AND<sup>[2](#footnote2)</sup> | ![type IF, OR, AND in the Legal Spreadsheet](images/IFIFORAND.png) |
 
-<a name="footnote2">2</a>: The logic formula is at the top left outlined in red.
+<a name="footnote2">2</a>: The logic formula is at the top left outlined in red.  The cell referred to is outlined in blue.
 
 ## Appendix A - Glossary<a name="glossary" />
 
