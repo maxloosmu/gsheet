@@ -79,7 +79,7 @@ The typed keywords here are outlined in blue in the automatically generated layo
 
 ### Keyword Cell Sequences<a name="keyword-cell-sequences" />
 
-These are the ways the keyword sequences can be typed out.  The output layouts are shown below.
+These are the ways the keyword sequences can be typed out.  Each keyword must be typed in each cell as shown below.  The output layouts will then appear as shown.
 
 | **Type these keywords** | **Possible layouts of these keywords** |
 | --- | --- |
