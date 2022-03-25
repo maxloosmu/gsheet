@@ -57,7 +57,7 @@ These settings are done in the Legal Spreadsheet Google Sheet to enable the keyw
 
 ### Single Cell Keywords
 
-The typed keywords here are outlined in blue.
+The typed keywords here are outlined in blue in the automatically generated layouts.
 
 | **Type the Keyword** | **Google Sheet Will Output This Layout** |
 | --- | --- |
@@ -73,6 +73,8 @@ The typed keywords here are outlined in blue.
 <a name="footnote1">1</a>: MEANS, IS and IT IS starts a constitutive rule.
 
 ### Keyword Cell Sequences
+
+These are the ways the keyword sequences that can be typed out.  The output layouts are shown below.
 
 | **Type these keywords** | **Possible layouts of these keywords** |
 | --- | --- |
