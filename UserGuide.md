@@ -37,6 +37,7 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 
 <ol>
   <li>Click on Extensions in the header and select Apps Script</li>
+  <img src=AppsScript.png alt="Apps Script">
   <li>Select Triggers, select "create a new trigger", and activate it</li>
 </ol>
 
