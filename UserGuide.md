@@ -55,6 +55,8 @@ These settings are done in the Legal Spreadsheet Google Sheet to enable the keyw
 
 ## Keywords<a name="key-functions" />
 
+### Single Cell Keywords
+
 | **Type the Keyword** | **Google Sheet Will Output This Layout** |
 | --- | --- |
 | AND | ![type AND in a cell in the Legal Spreadsheet](images/AND.png) |
@@ -68,7 +70,7 @@ These settings are done in the Legal Spreadsheet Google Sheet to enable the keyw
 
 <a name="footnote1">1</a>: MEANS, IS and IT IS starts a constitutive rule.
 
-### Keywords Sequences
+### Keyword Cell Sequences
 
 | **Type these keywords** | **Possible layouts of these keywords** |
 | --- | --- |
