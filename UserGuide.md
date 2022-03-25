@@ -12,8 +12,12 @@ Legal Spreadsheet Logo IMAGE
 
 - [About the Legal Spreadsheet](#about)
 - [Setup](#Setup)
-  - [Signup](#signup)
-- [Keywords](#key-functions)
+  - [Signup](#Signup)
+  - [Signin and Access](#signin)
+  - [Settings](#Settings)
+- [Keywords](#Keywords)
+  - [Single Cell Keywords](#single-cell-keywords)
+  - [Keyword Cell Sequences](#keyword-cell-sequences)
 - [Appendix A - Glossary](#glossary)
 - [Appendix B - Trademarks](#trademarks)
 
@@ -25,7 +29,7 @@ The Legal Spreadsheet helps users to automate their legal writing.
 
 Users must have these setups to access the Legal Spreadsheet and use its keyword functions.
 
-### Signup<a name="signup" />
+### Signup
 
 Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=en) for a Google:tm: Account.
 
@@ -37,7 +41,7 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
   <li>Access the Legal Spreadsheet in the Google:tm: Drive.</li>
 </ol>
 
-### Settings<a name="settings" />
+### Settings
 
 These settings are done in the Legal Spreadsheet Google Sheet to enable the keyword functions.
 
@@ -54,9 +58,9 @@ These settings are done in the Legal Spreadsheet Google Sheet to enable the keyw
   <img src="images/BabyLegalSS.png" alt="BabyLegalSS">
 </ol>
 
-## Keywords<a name="key-functions" />
+## Keywords
 
-### Single Cell Keywords
+### Single Cell Keywords<a name="single-cell-keywords" />
 
 The typed keywords here are outlined in blue in the automatically generated layouts.
 
@@ -73,7 +77,7 @@ The typed keywords here are outlined in blue in the automatically generated layo
 
 <a name="footnote1">1</a>: MEANS, IS and IT IS starts a constitutive rule.
 
-### Keyword Cell Sequences
+### Keyword Cell Sequences<a name="keyword-cell-sequences" />
 
 These are the ways the keyword sequences that can be typed out.  The output layouts are shown below.
 
