@@ -47,6 +47,10 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 
 ## Key functions<a name="key-functions" />
 
+| Type Keyword | Google Sheet Output |
+| --- | --- |
+| EVERY | ![type EVERY in a cell in the Legal Spreadsheet](images/EVERY.png) |
+
 ### the EVERY keyword
 
 Type in EVERY in a cell to see the added words and layout effects.
