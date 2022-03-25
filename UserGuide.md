@@ -30,17 +30,18 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 
 <ol>
   <li>Users must <a href="https://myaccount.google.com">sign in</a> to their Google:tm: Account.</li>
+  <li><a href="https://support.google.com/drive/answer/2423485?hl=en">Access Google:tm: Drive.</a></li>
   <li>Access the Legal Spreadsheet in the Google:tm: Drive.</li>
 </ol>
 
 ### Setting
 
 <ol>
-  <li>Click on Extensions in the header and select Apps Script</li>
+  <li>Click on Extensions in the header and select Apps Script.</li>
   <img src="images/AppsScript.png" alt="Apps Script">
-  <li>Select Triggers and select Add Trigger</li>
+  <li>Select Triggers and select Add Trigger.</li>
   <img src="images/Triggers.png" alt="Triggers">
-  <li>Select onChange for "Choose which function to run"</li>
+  <li>Select onChange for "Choose which function to run".</li>
   <li>Select "On change" for "Select event type"</li>
   <img src="images/SelectOnChange.png" alt="SelectOnChange">
 </ol>
@@ -51,27 +52,9 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 | --- | --- |
 | EVERY | ![type EVERY in a cell in the Legal Spreadsheet](images/EVERY.png) |
 | IF | ![type IF in a cell in the Legal Spreadsheet](images/IF.png) |
-| WHEN | |
+| WHEN | ![type WHEN in a cell in the Legal Spreadsheet](images/WHEN.png) |
 | MEANS | ![type MEANS in a cell in the Legal Spreadsheet](images/MEANS.png) |
-| IS | |
-
-### the EVERY keyword
-
-Type in EVERY in a cell to see the added words and layout effects.
-
-![type EVERY in a cell in the Legal Spreadsheet](images/EVERY.png)
-
-### the IF and WHEN keywords
-
-Type in IF or WHEN in a cell to see the added words and layout effects.
-
-![type IF in a cell in the Legal Spreadsheet](images/IF.png)
-
-### the MEANS and IS keywords
-
-Type in MEANS or IS in a cell to see the added words and layout effects.
-
-![type MEANS in a cell in the Legal Spreadsheet](images/MEANS.png)
+| IS | ![type IS in a cell in the Legal Spreadsheet](images/IS.png) |
 
 ## Appendix A - Glossary<a name="glossary" />
 
