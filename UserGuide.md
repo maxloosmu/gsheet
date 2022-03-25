@@ -29,7 +29,7 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 ### Signin and Access
 
 <ol>
-  <li>Users must [sign in](https://myaccount.google.com/) to their Google:tm: Account.</li>
+  <li>Users must <a href="https://myaccount.google.com">sign in</a> to their Google:tm: Account.</li>
   <li>Access the Legal Spreadsheet in the Google:tm: Drive.</li>
 </ol>
 
