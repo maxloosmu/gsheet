@@ -38,12 +38,12 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 
 <ol>
   <li>Click on Extensions in the header and select Apps Script.</li>
-  <img src="images/AppsScript.png" alt="Apps Script" width="100">
+  <img src="images/AppsScript.png" alt="Apps Script" width="300">
   <li>Select Triggers and select Add Trigger.</li>
-  <img src="images/Triggers.png" alt="Triggers" width="100">
+  <img src="images/Triggers.png" alt="Triggers" width="300">
   <li>Select onChange for "Choose which function to run".</li>
   <li>Select "On change" for "Select event type"</li>
-  <img src="images/SelectOnChange.png" alt="SelectOnChange" width="100">
+  <img src="images/SelectOnChange.png" alt="SelectOnChange" width="300">
 </ol>
 
 ## Key functions<a name="key-functions" />
