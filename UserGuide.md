@@ -67,6 +67,7 @@ These settings are done in the Legal Spreadsheet Google Sheet to enable the keyw
 | IT IS<sup>[2](#footnote2)</sup> | ![type IT IS in a cell in the Legal Spreadsheet](images/ITIS.png) |
 
 <a name="footnote1">1</a>: This is the way to form IF, OR and AND.
+
 <a name="footnote2">2</a>: MEANS, IS and IT IS starts a constitutive rule.
 
 ## Appendix A - Glossary<a name="glossary" />
