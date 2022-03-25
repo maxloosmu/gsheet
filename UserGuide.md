@@ -47,9 +47,13 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 
 ## Key functions<a name="key-functions" />
 
-| Type Keyword | Google Sheet Output |
+| **Type Keyword** | **Google Sheet Output** |
 | --- | --- |
 | EVERY | ![type EVERY in a cell in the Legal Spreadsheet](images/EVERY.png) |
+| IF | ![type IF in a cell in the Legal Spreadsheet](images/IF.png) |
+| WHEN | |
+| MEANS | ![type MEANS in a cell in the Legal Spreadsheet](images/MEANS.png) |
+| IS | |
 
 ### the EVERY keyword
 
