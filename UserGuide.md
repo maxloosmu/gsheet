@@ -57,7 +57,7 @@ These settings are done in the Legal Spreadsheet Google Sheet to enable the keyw
 
 ### Single Cell Keywords
 
-The keywords here are outlined in blue.
+The typed keywords here are outlined in blue.
 
 | **Type the Keyword** | **Google Sheet Will Output This Layout** |
 | --- | --- |
