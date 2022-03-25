@@ -48,7 +48,7 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 
 ## Key functions<a name="key-functions" />
 
-| **Type Keyword** | **Google Sheet Output** |
+| **Type the Keyword** | **Google Sheet Will Output This Layout** |
 | --- | --- |
 | EVERY | ![type EVERY in a cell in the Legal Spreadsheet](images/EVERY.png) |
 | IF | ![type IF in a cell in the Legal Spreadsheet](images/IF.png) |
