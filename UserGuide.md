@@ -57,18 +57,25 @@ These settings are done in the Legal Spreadsheet Google Sheet to enable the keyw
 
 | **Type the Keyword** | **Google Sheet Will Output This Layout** |
 | --- | --- |
-| AND<sup>[1](#footnote1)</sup> | ![type AND in a cell in the Legal Spreadsheet](images/AND.png) |
-| OR<sup>[1](#footnote1)</sup> | ![type OR in a cell in the Legal Spreadsheet](images/OR.png) |
+| AND | ![type AND in a cell in the Legal Spreadsheet](images/AND.png) |
+| OR | ![type OR in a cell in the Legal Spreadsheet](images/OR.png) |
 | EVERY | ![type EVERY in a cell in the Legal Spreadsheet](images/EVERY.png) |
-| IF<sup>[1](#footnote1)</sup> | ![type IF in a cell in the Legal Spreadsheet](images/IF.png) <br> ![type IF, OR, AND in the Legal Spreadsheet](images/IFORAND.png) |
+| IF | ![type IF in a cell in the Legal Spreadsheet](images/IF.png) |
 | WHEN | ![type WHEN in a cell in the Legal Spreadsheet](images/WHEN.png) |
-| MEANS<sup>[2](#footnote2)</sup> | ![type MEANS in a cell in the Legal Spreadsheet](images/MEANS.png) |
-| IS<sup>[2](#footnote2)</sup> | ![type IS in a cell in the Legal Spreadsheet](images/IS.png) |
-| IT IS<sup>[2](#footnote2)</sup> | ![type IT IS in a cell in the Legal Spreadsheet](images/ITIS.png) |
+| MEANS<sup>[1](#footnote1)</sup> | ![type MEANS in a cell in the Legal Spreadsheet](images/MEANS.png) |
+| IS<sup>[1](#footnote1)</sup> | ![type IS in a cell in the Legal Spreadsheet](images/IS.png) |
+| IT IS<sup>[1](#footnote1)</sup> | ![type IT IS in a cell in the Legal Spreadsheet](images/ITIS.png) |
 
-<a name="footnote1">1</a>: This includes one way to form IF, OR and AND with a logic formula at the top left.
+<a name="footnote1">1</a>: MEANS, IS and IT IS starts a constitutive rule.
 
-<a name="footnote2">2</a>: MEANS, IS and IT IS starts a constitutive rule.
+### Keywords Sequences
+
+| **Type these keywords** | **Possible layouts of these keywords** |
+| --- | --- |
+| IF, OR, AND<sup>[2](#footnote2)</sup> | ![type IF, OR, AND in the Legal Spreadsheet](images/IFORAND.png) |
+| IF, IF, OR, AND<sup>[2](#footnote2)</sup> | ![type IF, OR, AND in the Legal Spreadsheet](images/IFIFORAND.png) |
+
+<a name="footnote2">2</a>: The logic formula is at the top left outlined in red.
 
 ## Appendix A - Glossary<a name="glossary" />
 
