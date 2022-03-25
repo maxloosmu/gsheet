@@ -46,6 +46,8 @@ Users must first sign up for a Google:tm: Account.
 
 Type in EVERY in a cell to see the added words and layout effects.
 
+![type EVERY in a cell in the Legal Spreadsheet](images/EVERY.png)
+
 ### the IF and WHEN keywords
 
 Type in IF or WHEN in a cell to see the added words and layout effects.
