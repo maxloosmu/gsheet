@@ -53,12 +53,12 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 | EVERY | ![type EVERY in a cell in the Legal Spreadsheet](images/EVERY.png) |
 | IF | ![type IF in a cell in the Legal Spreadsheet](images/IF.png) |
 | WHEN | ![type WHEN in a cell in the Legal Spreadsheet](images/WHEN.png) |
-| <a name="myfootnote1">1</a>: MEANS | ![type MEANS in a cell in the Legal Spreadsheet](images/MEANS.png) |
+| MEANS<sup>[1](#myfootnote1)</sup> | ![type MEANS in a cell in the Legal Spreadsheet](images/MEANS.png) |
 | <a name="myfootnote1">1</a>: IS | ![type IS in a cell in the Legal Spreadsheet](images/IS.png) |
 
 ### Footnotes
 
-<sup>[1](#myfootnote1)</sup> MEANS and IS starts a constitutive rule.
+<a name="myfootnote1">1</a>: MEANS and IS starts a constitutive rule.
 
 ## Appendix A - Glossary<a name="glossary" />
 
