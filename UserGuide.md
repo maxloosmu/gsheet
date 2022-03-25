@@ -24,12 +24,12 @@ The Legal Spreadsheet helps users to automate their legal writing.
 
 ### Signup
 
-Users must first sign up for a Google:tm: Account.
+Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=en) for a Google:tm: Account.
 
 ### Signin and Access
 
 <ol>
-  <li>Users must sign in to their Google:tm: Account.</li>
+  <li>Users must [sign in](https://myaccount.google.com/) to their Google:tm: Account.</li>
   <li>Access the Legal Spreadsheet in the Google:tm: Drive.</li>
 </ol>
 
@@ -52,9 +52,13 @@ Type in EVERY in a cell to see the added words and layout effects.
 
 Type in IF or WHEN in a cell to see the added words and layout effects.
 
+![type IF in a cell in the Legal Spreadsheet](images/IF.png)
+
 ### the MEANS and IS keywords
 
 Type in MEANS or IS in a cell to see the added words and layout effects.
+
+![type MEANS in a cell in the Legal Spreadsheet](images/MEANS.png)
 
 ## Appendix A - Glossary<a name="glossary" />
 
