@@ -79,7 +79,7 @@ The typed keywords here are outlined in blue in the automatically generated layo
 
 ### Keyword Cell Sequences<a name="keyword-cell-sequences" />
 
-These are the ways the keyword sequences can be typed out.  Each keyword must be typed in each cell from top to bottom as shown below.  Each output layout will then appear as shown when each keyword is typed.  There is a waiting time of 3-5 seconds for the output to show completely.
+These are the ways the keyword sequences can be typed out.  Each keyword must be typed in each cell from top to bottom as shown below.  Each output layout will then appear as shown when each keyword is typed.  There is a waiting time of 3-5 seconds for each keyword's output to show completely.
 
 | **Type these keywords** | **Possible layouts of these keywords** |
 | --- | --- |
