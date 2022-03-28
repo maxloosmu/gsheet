@@ -79,13 +79,14 @@ The typed keywords here are outlined in blue in the automatically generated layo
 
 ### Keyword Cell Sequences<a name="keyword-cell-sequences" />
 
-These are the ways the keyword sequences can be typed out.  Each keyword must be typed in each cell from top to bottom as shown below.  Each output layout will then appear as shown when each keyword is typed.  There is a waiting time of 3-5 seconds for the output to show completely.
+These are the ways the keyword sequences can be typed out.  Each keyword must be typed in each cell from top to bottom as shown below.  The output layouts will then appear as shown.
 
 | **Type these keywords** | **Possible layouts of these keywords** |
 | --- | --- |
+| IF, OR, AND<sup>[2](#footnote2)</sup> | ![type IF, OR, AND in the Legal Spreadsheet](images/IFORAND.png) |
 | IF, IF, OR, AND<sup>[2](#footnote2)</sup> | ![type IF, OR, AND in the Legal Spreadsheet](images/IFIFORAND.png) |
 
-<a name="footnote2">2</a>: The logic formula is at the top left outlined in red.  The cell outlined in blue is the cell where the logic formula resides in.
+<a name="footnote2">2</a>: The logic formula is at the top left outlined in red.  The cell referred to is outlined in blue.
 
 ## Appendix A - Glossary<a name="glossary" />
 
