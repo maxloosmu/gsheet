@@ -98,7 +98,7 @@ These are the ways the keyword sequences can be typed out.  Each keyword must be
 | IF C4 OR C5 OR C6 | ![type IF, OR, OR in the Legal Spreadsheet](images/IFOROR.png) |
 | IF C4 AND C5 AND C6 | ![type IF, AND, AND in the Legal Spreadsheet](images/IFANDAND.png) |
 | IF (D5 OR D6) AND C7 | ![type IF, OR, AND in the Legal Spreadsheet](images/IFIFORAND.png) |
-| IF, IF, OR, OR, AND, AND | ![type IF, IF, OR, OR, AND, AND in the Legal Spreadsheet](images/IFIFORORANDAND.png) |
+| IF (D5 OR D6 OR D7) AND C8 AND C9 | ![type IF, IF, OR, OR, AND, AND in the Legal Spreadsheet](images/IFIFORORANDAND.png) |
 
 ## Appendix A - Glossary<a name="glossary" />
 
