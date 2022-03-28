@@ -83,7 +83,10 @@ These are the ways the keyword sequences can be typed out.  Each keyword must be
 
 | **Type these keywords** | **Possible layouts of these keywords** |
 | --- | --- |
+| IF, OR, OR<sup>[2](#footnote2)</sup> | ![type IF, OR, OR in the Legal Spreadsheet](images/IFOROR.png) |
+| IF, AND, AND<sup>[2](#footnote2)</sup> | ![type IF, AND, AND in the Legal Spreadsheet](images/IFANDAND.png) |
 | IF, IF, OR, AND<sup>[2](#footnote2)</sup> | ![type IF, OR, AND in the Legal Spreadsheet](images/IFIFORAND.png) |
+| IF, IF, OR, OR, AND, AND<sup>[2](#footnote2)</sup> | ![type IF, IF, OR, OR, AND, AND in the Legal Spreadsheet](images/IFIFORORANDAND.png) |
 
 <a name="footnote2">2</a>: The logic formula is at the top left outlined in red.  The cell outlined in blue is the cell where the logic formula resides in.
 
