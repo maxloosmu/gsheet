@@ -154,7 +154,8 @@ function drawBridgeIfAndOr(h, sheet) {
           restart = false;
           rowBegin = row;
         }
-        // Parse code block and draw bridge.
+        // Parse code block in BabyLegalSS and
+        // draw bridge.
         // This code section here also redraws AND
         // and adjusts formatting around buildRange
         // which includes IF, WHEN, MEANS and IS.
