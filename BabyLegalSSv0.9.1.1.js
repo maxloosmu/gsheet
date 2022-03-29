@@ -53,9 +53,8 @@ function onEdit(e) {
   let c = e.range;
   let sheet = SpreadsheetApp.getActiveSheet();
   let h = new History();
-  let patchITIS = false;
   if (goodLayout(c) && !c.isBlank()) {
-    patchITIS = drawWords(c, patchITIS);
+    drawWords(c);
     c = startProcessing(c, h, sheet);
   }
   else if (c.isBlank()) {
@@ -128,6 +127,7 @@ function scanDownwards(c, h) {
 }
 function drawBridgeIfAndOr(h, sheet) {
   // SpreadsheetApp.getUi().alert("drawBridgeIfAndOr");
+  // sheet.getRange(1, 6).setValue("drawBridgeIfAndOr");
   let restart = true;
   let rowBegin = rowStop = numOfRows = 0;
   let buildRange = rangeString = "";
@@ -155,6 +155,9 @@ function drawBridgeIfAndOr(h, sheet) {
           rowBegin = row;
         }
         // Parse code block and draw bridge.
+        // This code section here also redraws AND
+        // and adjusts formatting around buildRange
+        // which includes IF, WHEN, MEANS and IS.
         if (columnNow==col && !restart) {
           rowStop = getFurthest(rowStop, row);
           numOfRows = rowStop - rowBegin + 1;
@@ -174,7 +177,7 @@ function drawBridgeIfAndOr(h, sheet) {
             sheet.getRange(row, col).offset(0,1,1,2)
               .setBorder(true,true,false,false,false,false,
               "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
-            buildRange.setBorder(false,false,false,true,false,false,
+            buildRange.setBorder(null,false,false,true,false,false,
               "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
           }
         }
@@ -279,7 +282,7 @@ function goodLayout(c) {
   }
   return true;
 }
-function drawWords(c, patchITIS) {
+function drawWords(c) {
   // Identify keywords for formatting and drawing.
   cValue = c.getValue();
   if (cValue=="IF" || cValue=="WHEN") {
@@ -301,7 +304,6 @@ function drawWords(c, patchITIS) {
     }
   }
   else if (cValue=="IT IS") {
-    patchITIS = true;
     drawTeeForITIS(c);
   }
   else if (cValue=="EVERY" || cValue=="PARTY") {
@@ -313,12 +315,11 @@ function drawWords(c, patchITIS) {
   else if (cValue=="UNLESS") {
     drawUnless(c);
   }
-  return patchITIS;
 }
 function drawIfWhenTop(c) {
-  // Check cell above for checkbox.  
+  // Check cell above for checkbox.
   // If no checkbox, move cValue down
-  // and insert checkbox in original cell.  
+  // and insert checkbox in original cell.
   let topCell = c.offset(-1,0);
   if (topCell.getDataValidation()!=null) {
     if (topCell.getDataValidation().getCriteriaType()
@@ -336,9 +337,6 @@ function drawIfWhenTop(c) {
   }
 }
 function drawIfWhenOr(c) {
-  SpreadsheetApp.getUi().alert("drawIfWhenOr");
-  let sheet = SpreadsheetApp.getActiveSheet();
-  sheet.getRange(1, 6).setValue("drawIfWhenOr");
   if (c.getValue()=="OR") {
     c.offset(0,-1,1,9).clearFormat();
   }
@@ -348,7 +346,6 @@ function drawIfWhenOr(c) {
       .setBorder(false,true,false,false,false,false,
       "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
   }
-  sheet.getRange(1, 7).setValue("not patched");
   c.setBorder(null,null,null,true,false,false,
     "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
   if (c.offset(0,2).isBlank()) {
@@ -356,21 +353,18 @@ function drawIfWhenOr(c) {
   }
 }
 function drawAnd(c) {
-  SpreadsheetApp.getUi().alert("drawAnd");
-  let sheet = SpreadsheetApp.getActiveSheet();
-  sheet.getRange(1, 6).setValue("drawAnd");
   c.offset(0,-1,1,9).clearFormat();
   c.setHorizontalAlignment("right");
   if (c.offset(0,1).isBlank()) {
     c.offset(0,1).insertCheckboxes()
       .setBorder(null,true,false, false, false,false,
-      "orange",SpreadsheetApp.BorderStyle.SOLID_THICK);
+      "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
   }
   c.offset(0,1,1,2)
     .setBorder(true,true,false,false,false,false,
-    "orange",SpreadsheetApp.BorderStyle.SOLID_THICK);
+    "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
   c.setBorder(null,null,null,true,false,false,
-    "orange",SpreadsheetApp.BorderStyle.SOLID_THICK);
+    "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
   if (c.offset(0,2).isBlank()) {
     c.offset(0,2).setValue("some condition");
   }
@@ -394,8 +388,6 @@ function drawTeeOverIsMeans(c) {
   c.offset(1,2).setValue("another thing");
 }
 function drawTeeForITIS(c) {
-  let sheet = SpreadsheetApp.getActiveSheet();
-  sheet.getRange(1, 6).setValue("drawTeeForITIS");
   let cValue = c.getValue();
   c.offset(0,-1,3,9).clear();
   c.setValue(cValue).setHorizontalAlignment("right");
@@ -403,10 +395,10 @@ function drawTeeForITIS(c) {
   c.offset(0,2).setValue("a Defined Situation");
   c.offset(1,0,1,5)
     .setBorder(true,false,false,false,false,false,
-    "red",SpreadsheetApp.BorderStyle.SOLID_THICK);
+    "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
   c.offset(1,1,2,1)
     .setBorder(true,false,false,true,false,false,
-    "red",SpreadsheetApp.BorderStyle.SOLID_THICK);
+    "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
   c.offset(1,1).setValue("WHEN").setHorizontalAlignment("right");
   c.offset(1,2).insertCheckboxes();
   c.offset(1,3).setValue("something holds");

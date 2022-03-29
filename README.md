@@ -83,3 +83,7 @@ Error found
 
 Goals
 - To resolve this error by building a proper Tee.
+
+Result
+- Problem resolved.
+
