@@ -10,6 +10,7 @@
 - [Setup](#Setup)
   - [Signup](#Signup)
   - [Signin and Access](#signin)
+  - [Settings](#Settings)
 - [Keywords](#Keywords)
   - [Single Cell Keywords](#single-cell-keywords)
   - [Keyword Cell Sequences](#keyword-cell-sequences)
@@ -34,7 +35,24 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 <ol>
   <li>Users must <a href="https://myaccount.google.com">sign in</a> to their Google:tm: Account.</li>
   <li><a href="https://support.google.com/drive/answer/2423485?hl=en">Access Google:tm: Drive.</a></li>
-  <li>Access the <a href="https://docs.google.com/spreadsheets/d/1nylaNUOVApnuPUJBnE_W7f2b9GiKk7-xJ_axLcAJ1XE/edit#gid=0">Legal Spreadsheet</a> in the Google:tm: Drive.</li>
+  <li>Access the Legal Spreadsheet in the Google:tm: Drive.</li>
+</ol>
+
+### Settings
+
+These settings are done in the Legal Spreadsheet Google Sheet to enable the keyword functions.
+
+<ol>
+  <li>Click on "Extensions" in the header and select "Apps Script".</li>
+  <img src="images/AppsScript.png" alt="Apps Script" width="300">
+  <li>Select "Triggers" and select "Add Trigger".</li>
+  <img src="images/Triggers.png" alt="Triggers" width="300">
+  <li>Select "onChange" for "Choose which function to run".</li>
+  <li>Select "On change" for "Select event type".</li>
+  <li>Click the "Save" button.</li>
+  <img src="images/SelectOnChange.png" alt="Select onChange" width="300">
+  <li>Select back to the Legal Spreadsheet "BabyLegalSS".</li>
+  <img src="images/BabyLegalSS.png" alt="BabyLegalSS">
 </ol>
 
 ## Keywords
