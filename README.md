@@ -62,7 +62,7 @@ The typed keywords here are outlined in blue in the automatically generated layo
 
 These are the ways the keyword sequences can be typed out.  Each keyword must be typed in each cell from top to bottom as shown below.  Each output layout will then appear as shown when each keyword is typed.  There is a waiting time of 3-5 seconds for each keyword's output to show completely.
 
-| **Type these keywords** | **Keyword Sequence Logic** | **Possible layouts of these keywords** |
+| **Type these keywords (one word per row of cells)** | **Keyword Sequence Logic** | **Layouts of these keywords** |
 | --- | --- | --- |
 | IF, OR, OR<sup>[2](#footnote2)</sup> | IF C4 OR C5 OR C6 | ![type IF, OR, OR in the Legal Spreadsheet](images/IFOROR.png) |
 | IF, AND, AND<sup>[2](#footnote2)</sup> | IF C4 AND C5 AND C6 | ![type IF, AND, AND in the Legal Spreadsheet](images/IFANDAND.png) |
