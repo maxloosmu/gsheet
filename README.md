@@ -69,7 +69,7 @@ These are the ways the keyword sequences can be typed out.  Each keyword must be
 | IF, IF, OR, AND | IF (D5 OR D6) AND C7 | ![type IF, OR, AND in the Legal Spreadsheet](images/IFIFORAND.png) |
 | IF, IF, OR, OR, AND, AND | IF (D5 OR D6 OR D7) AND C8 AND C9 | ![type IF, IF, OR, OR, AND, AND in the Legal Spreadsheet](images/IFIFORORANDAND.png) |
 
-<a name="footnote2">2</a>: Type one keyword per row of cells.  The logic formula is at the top left outlined in red.  The cell outlined in blue is the cell where the logic formula resides in.
+<a name="footnote2">2</a>: <b><i>Type one keyword per row of cells.</i></b>  The logic formula is at the top left outlined in red.  The cell outlined in blue is the cell where the logic formula resides in.
 
 ## Appendix A - Glossary<a name="glossary" />
 
