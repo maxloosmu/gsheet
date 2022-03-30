@@ -37,6 +37,7 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
   <li>Request access to the Legal Spreadsheet.  Click the "Request Access" button.</li>
   <img src="images/RequestAccess.png" alt="Request Access" width="300">
   <img src="images/RequestAccess2.png" alt="Request Access" width="300">
+  <li>Wait for the Request to be approved.</li>
 </ol>
 
 ## Keywords
