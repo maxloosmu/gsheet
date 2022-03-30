@@ -33,9 +33,8 @@ Users must first [sign up](https://support.google.com/accounts/answer/27441?hl=e
 
 <ol>
   <li>Users must <a href="https://myaccount.google.com">sign in</a> to their Google:tm: Account.</li>
-  <li><a href="https://support.google.com/drive/answer/2423485?hl=en">Access Google:tm: Drive.</a></li>
-  <li>Access the <a href="https://docs.google.com/spreadsheets/d/1nylaNUOVApnuPUJBnE_W7f2b9GiKk7-xJ_axLcAJ1XE/edit#gid=0">Legal Spreadsheet</a> in the Google:tm: Drive.</li>
-  <li>Request access to the Legal Spreadsheet</li>
+  <li>Access the <a href="https://docs.google.com/spreadsheets/d/1nylaNUOVApnuPUJBnE_W7f2b9GiKk7-xJ_axLcAJ1XE/edit#gid=0">Legal Spreadsheet</a>.</li>
+  <li>Request access to the Legal Spreadsheet.</li>
   <img src="images/RequestAccess.png" alt="Request Access" width="300">
 </ol>
 
