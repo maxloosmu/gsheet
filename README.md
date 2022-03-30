@@ -60,7 +60,7 @@ The typed keywords here are outlined in blue in the automatically generated layo
 
 ### Keyword Cell Sequences<a name="keyword-cell-sequences" />
 
-These are the ways the keyword sequences can be typed out.  Each keyword must be typed in each cell from top to bottom as shown below.  Each output layout will then appear as shown when each keyword is typed.  There is a waiting time of 3-5 seconds for each keyword's output to show completely.
+These are the ways the keyword sequences can be typed out.  Each keyword must be typed in each cell from top to bottom as shown below.  There should only be one keyword per row of cells.  Each output layout will then appear as shown when each keyword is typed.  There is a waiting time of 3-5 seconds for each keyword's output to show completely.
 
 | **Type these keywords** | **Keyword Sequence Logic** | **Layouts of these keywords**<sup>[2](#footnote2)</sup> |
 | --- | --- | --- |
@@ -69,7 +69,7 @@ These are the ways the keyword sequences can be typed out.  Each keyword must be
 | IF, IF, OR, AND | IF (D5 OR D6) AND C7 | ![type IF, OR, AND in the Legal Spreadsheet](images/IFIFORAND.png) |
 | IF, IF, OR, OR, AND, AND | IF (D5 OR D6 OR D7) AND C8 AND C9 | ![type IF, IF, OR, OR, AND, AND in the Legal Spreadsheet](images/IFIFORORANDAND.png) |
 
-<a name="footnote2">2</a>: <b><i>Type one keyword per row of cells.</i></b>  The logic formula is at the top left outlined in red.  The cell outlined in blue is the cell where the logic formula resides in.
+<a name="footnote2">2</a>: The logic formula is at the top left outlined in red.  The cell outlined in blue is the cell where the logic formula resides in.
 
 ## Appendix A - Glossary<a name="glossary" />
 
