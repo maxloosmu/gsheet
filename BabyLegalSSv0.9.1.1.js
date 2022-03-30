@@ -430,7 +430,7 @@ function drawHenceLest(c) {
   let cValue = c.getValue();
   c.offset(0,-1,1,9).clearFormat();
   c.setValue(cValue).setHorizontalAlignment("right");
-  c.offset(0,1,1,4).setBorder(false,true,true,false,false,false,
+  c.offset(0,1,1,2).setBorder(false,true,true,false,false,false,
   "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
 }
 function drawUnless(c) {

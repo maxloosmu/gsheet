@@ -55,6 +55,9 @@ The typed keywords here are outlined in blue in the automatically generated layo
 | MEANS<sup>[1](#footnote1)</sup> | ![type MEANS in a cell in the Legal Spreadsheet](images/MEANS.png) |
 | IS<sup>[1](#footnote1)</sup> | ![type IS in a cell in the Legal Spreadsheet](images/IS.png) |
 | IT IS<sup>[1](#footnote1)</sup> | ![type IT IS in a cell in the Legal Spreadsheet](images/ITIS.png) |
+| HENCE | ![type HENCE in a cell in the Legal Spreadsheet](images/HENCE.png) |
+| LEST | ![type LEST in a cell in the Legal Spreadsheet](images/LEST.png) |
+| UNLESS | ![type UNLESS in a cell in the Legal Spreadsheet](images/UNLESS.png) |
 
 <a name="footnote1">1</a>: MEANS, IS and IT IS starts a constitutive rule.
 
