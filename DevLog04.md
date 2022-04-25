@@ -22,3 +22,15 @@ Goals
 Result and Analysis
 - Problem resolved.  The problem arises from the drawBridgeIfAndOr function, where the top of buildRange.setBorder for AND was set to false.  It is now set to null.
 
+#### BabyLegalSSv0.9.2.0.js Summary
+Goals
+- This version of the Legal Spreadsheet is just to test the code at https://gist.github.com/pamelafox/1878143.  The code changes the spreadsheet data into JSON, and then exports JSON to a display function.
+
+Results
+- The code was tested and works.
+
+#### BabyLegalSSv0.9.2.1.js Summary
+Goals
+- Adapt the code from BabyLegalSSv0.9.2.0.js into the actual Legal Spreadsheet.
+- Test and implement the Class UrlFetchApp in the Legal Spreadsheet, as described at: https://app.asana.com/0/1200815832581011/1202104680454158/f.
+
