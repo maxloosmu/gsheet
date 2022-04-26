@@ -197,8 +197,8 @@ function drawBridgeIfAndOr(h, sheet) {
         let [col, keyword, predicate] = element;
         // Determine start of code block.
         if (columnNow==col && restart &&
-          (keyword=="IF" || keyword=="WHEN"
-          || keyword=="MEANS" || keyword=="IS")
+          (keyword=="IF" || keyword=="WHEN")
+          // || keyword=="MEANS" || keyword=="IS")
           && rowBegin<row) {
           restart = false;
           rowBegin = row;
@@ -213,21 +213,31 @@ function drawBridgeIfAndOr(h, sheet) {
           numOfRows = rowStop - rowBegin + 1;
           buildRange = sheet.getRange(rowBegin,
             columnNow, numOfRows, 1);
+          getITIS = sheet.getRange(rowBegin-1, columnNow-1).getValue();
+          checkITIS = (getITIS=="IT IS");
           // rangeString = buildRange.getA1Notation();
           // SpreadsheetApp.getUi().alert(
           //   rangeString + ", " + keyword);
-          if (keyword=="OR") {
+          if (keyword=="OR" && !checkITIS) {
             // SpreadsheetApp.getUi().alert(keyword);
-            buildRange.setBorder(false,false,false,true,false,false,
+            buildRange.setBorder(null,false,false,true,false,false,
               "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
           }
-          else if (keyword=="AND") {
+          else if (keyword=="AND" && !checkITIS) {
             // SpreadsheetApp.getUi().alert(
             //   keyword + ", " + row + ", " + col);
             sheet.getRange(row, col).offset(0,1,1,2)
               .setBorder(true,true,false,false,false,false,
               "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
             buildRange.setBorder(null,false,false,true,false,false,
+              "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
+          }
+          getNextIF = sheet.getRange(rowBegin+1, columnNow+1).getValue();
+          checkNextIF = (getNextIF=="IF");
+          buildIFHorizontal = sheet.getRange(rowBegin,
+            columnNow+1, 1, 2);
+          if (checkNextIF) {
+            buildIFHorizontal.setBorder(true,true,null,null,null,null,
               "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
           }
         }
@@ -275,7 +285,9 @@ function processHistory(h, sheet) {
           restart = false;
           rowBegin = row;
         }
-        // parse code block and update topLeft equation.
+        // Parse code block and update topLeft equation.
+        // Must use setValue("") instead of clear()
+        // because cannot clear borders formatting.
         if (columnNow==col && !restart) {
           rowStop = getFurthest(rowStop, row);
           numOfRows = rowStop - rowBegin + 1;
@@ -288,7 +300,7 @@ function processHistory(h, sheet) {
               + "(" + rangeString + ")");
           }
           else {
-            sheet.getRange(rowBegin-1, columnNow).clear();
+            sheet.getRange(rowBegin-1, columnNow).setValue("");
           }
         }
       }
@@ -380,7 +392,7 @@ function drawIfWhenTop(c) {
   }
   else if (topCell.isBlank()) {
     let cValue = c.getValue();
-    c.clear();
+    c.setValue("");
     c.insertCheckboxes();
     c.offset(1,0).setValue(cValue);
     return c.offset(1,0);
@@ -393,7 +405,7 @@ function drawIfWhenOr(c) {
   c.setHorizontalAlignment("right");
   if (c.offset(0,1).isBlank()) {
     c.offset(0,1).insertCheckboxes()
-      .setBorder(false,true,false,false,false,false,
+      .setBorder(null,true,false,false,false,false,
       "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
   }
   c.setBorder(null,null,null,true,false,false,

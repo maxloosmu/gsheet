@@ -30,7 +30,7 @@ Results
 - The code was tested and works.
 
 #### BabyLegalSSv0.9.2.1.js Summary
-Goals
+Outcomes
 - Adapt the code from BabyLegalSSv0.9.2.0.js into the actual Legal Spreadsheet.
 - Test and implement the Class UrlFetchApp in the Legal Spreadsheet, as described at: https://app.asana.com/0/1200815832581011/1202104680454158/f.
-
+- Finetune some of the code to remove Legal Spreadsheet Keyword formatting errors and better satisfy project requirements.  
