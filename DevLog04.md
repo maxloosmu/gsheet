@@ -30,7 +30,16 @@ Results
 - The code was tested and works.
 
 #### BabyLegalSSv0.9.2.1.js Summary
-Outcomes
+Tasks done
 - Adapt the code from BabyLegalSSv0.9.2.0.js into the actual Legal Spreadsheet.
 - Test and implement the Class UrlFetchApp in the Legal Spreadsheet, as described at: https://app.asana.com/0/1200815832581011/1202104680454158/f.
-- Finetune some of the code to remove Legal Spreadsheet Keyword formatting errors and better satisfy project requirements.  
+- Finetune some of the code to remove Legal Spreadsheet Keyword formatting errors and better satisfy project requirements.
+
+#### BabyLegalSSv0.9.2.2.js Summary
+Goal
+- To troubleshoot a bug arising from a "row delete and row insert" action.  This has been tested to happen between the IT IS set of keyword formatting placed above the deleted and inserted row(s), and the Example 13 set of IF IF AND OR set of keyword formatting placed below.
+
+Possible sources of problem:
+- Intuitively, the problem may arise because of a bug in Google Sheets: when a cell has a checkbox, inserting a row above it will add a row with another checkbox in the cell of the added row above the original checkbox.
+- To resolve the problem, I may need to find all instances in the code that responds to the detection of a checkbox.
+
