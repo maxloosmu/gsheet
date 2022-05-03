@@ -51,18 +51,18 @@ function onChange(e) {
   let sheet = SpreadsheetApp.getActiveSheet();
   if (e.changeType=="INSERT_ROW") {
     testWait();
-    sheet.getRange(1, 4).setValue("row inserted");
+    // sheet.getRange(1, 4).setValue("row inserted");
     scanDocIF(sheet);
-    sheet.getRange(1, 5).setValue("insert complete");
+    // sheet.getRange(1, 5).setValue("insert complete");
   }
   else if (e.changeType=="REMOVE_ROW") {
     testWait();
-    sheet.getRange(1, 4).setValue("row deleted");
+    // sheet.getRange(1, 4).setValue("row deleted");
     scanDocIF(sheet);
-    sheet.getRange(1, 5).setValue("delete complete");
+    // sheet.getRange(1, 5).setValue("delete complete");
   }
   else if (e.changeType=="EDIT") {
-    sheet.getRange(1, 4).setValue("cell edited");
+    // sheet.getRange(1, 4).setValue("cell edited");
     sheet.getRange(1, 5).setValue("");
   }
 }
@@ -79,9 +79,9 @@ function scanDocIF(sheet) {
   let h = new History();
   let totalRows = 100;
   let totalCols = 3
-  let startWord = getNext1 = getNext2 = "";
   for(let i=3; i<=totalRows; i++) {
     for(let j=2; j<=totalCols; j++) {
+      let startWord = getNext1 = getNext2 = "";
       c = sheet.getRange(i, j);
       startWord = c.getValue();
       if (startWord=="IF") {
@@ -122,7 +122,7 @@ function startProcessing(c, h, sheet) {
   // because h.history required for drawing
   drawBridgeIfAndOr(h, sheet);
   processHistory(h, sheet);
-  // sheet.getRange(1, 3).setValue(h.history.toString());
+  sheet.getRange(1, 3).setValue(h.history.toString());
   return c;
 }
 class History {

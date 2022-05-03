@@ -46,7 +46,7 @@ Possible sources of problem:
 Implemented solution:
 - Instead of the original idea of implementing code to overwrite the erroneous outputs, another test moving the code
 
-`let startWord = getNext1 = getNext2 = "";`
+    let startWord = getNext1 = getNext2 = "";
 
 from the function `scanDocIF` from outside the 2 for loops into both for loops, resolved the problem.  It is likely that the variables involved were not reset before reusing them.  
 
