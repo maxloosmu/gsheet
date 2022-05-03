@@ -40,6 +40,20 @@ Goal
 - To troubleshoot a bug arising from a "row delete and row insert" action.  This has been tested to happen between the IT IS set of keyword formatting placed above the deleted and inserted row(s), and the Example 13 set of IF IF AND OR set of keyword formatting placed below.
 
 Possible sources of problem:
-- Intuitively, the problem may arise because of a bug in Google Sheets: when a cell has a checkbox, inserting a row above it will add a row with another checkbox in the cell of the added row above the original checkbox.
-- To resolve the problem, I may need to find all instances in the code that responds to the detection of a checkbox.
+- Intuitively, the problem may arise because of a bug in Google Sheets: when a cell has a checkbox, inserting a row above it will add a row with another checkbox in the cell of the added row above the original checkbox.  However, this is unlikely because the code does not respond to checkbox detections.  
+- Tests done on BabyLegalSSv0.9.2.2.js and insertrow-onedit.js show that the problem likely arises from onEdit responding in unpredictable ways to row inserts.  
+
+Implemented solution:
+- Instead of the original idea of implementing code to overwrite the erroneous outputs, another test moving the code
+
+`let startWord = getNext1 = getNext2 = "";`
+
+from the function `scanDocIF` from outside the 2 for loops into both for loops, resolved the problem.  It is likely that the variables involved were not reset before reusing them.  
+
+#### insertrow-onedit.js Summary
+Tasks done
+- Code for onEdit to detect cell range for event created.
+- Row inserts tested in the spreadsheet.  Detection of cell range using onEdit sometimes show the first leftmost cell of inserted row, sometimes show the cell which had the focus before the insert, and sometimes nothing showed.  
+- Row deletes do not trigger response.  
+
 
