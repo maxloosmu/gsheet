@@ -48,6 +48,11 @@ Implemented solution:
 ```let startWord = getNext1 = getNext2 = "";```
 from the function `scanDocIF` from outside the 2 for loops into both for loops, resolved the problem.  It is likely that the variables involved were not reset before reusing them in each loop.  
 
+Final Outcome:
+- I tried to replicate the error by moving the code
+```let startWord = getNext1 = getNext2 = "";```
+back to the previous position, but failed to replicate the error.  This is strange and is likely due to some inherent updates in Google Sheets itself that were not reported.  However, to avoid future problems, the code is moved to its new position.  
+
 #### insertrow-onedit.js Summary
 Tasks done
 - Code for onEdit to detect cell range for event created.
