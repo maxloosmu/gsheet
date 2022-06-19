@@ -1,25 +1,25 @@
 function onOpen() {
-  let ui = SpreadsheetApp.getUi();
+  const ui = SpreadsheetApp.getUi();
   ui.createMenu('Export CSV')
     .addItem('Export CSV', 'exportCSV')
     .addToUi();
 }
 
 function exportCSV() {
-  ui = SpreadsheetApp.getUi();
+  const ui = SpreadsheetApp.getUi();
   // var ss = SpreadsheetApp.openById("1ZFsceRbsKTsrWGuRVKqfWsEdpmdr0nhp4oE4o4xtsOQ");
   const ss = SpreadsheetApp.getActiveSpreadsheet()
-  let sheet = ss.getSheets()[0];
+  const sheet = ss.getSheets()[0];
 
   // This represents ALL the data
-  var range = sheet.getDataRange();
-  var values = range.getValues();
-  var csvStr = "";
+  const range = sheet.getDataRange();
+  const values = range.getValues();
+  let csvStr = "";
 
   // This creates a string of the spreadsheet in CSV format with a trailing comma
-  for (var i = 0; i < values.length; i++) {
-    var row = "";
-    for (var j = 0; j < values[i].length; j++) {
+  for (let i = 0; i < values.length; i++) {
+    let row = "";
+    for (let j = 0; j < values[i].length; j++) {
       if (values[i][j]) {
         row = row + values[i][j];
       }
@@ -30,10 +30,10 @@ function exportCSV() {
   }
 
   //creates de Blob of the csv file
-  var csvBlob = Utilities.newBlob(csvStr, 'text/csv', 'test.csv');
+  const csvBlob = Utilities.newBlob(csvStr, 'text/csv', 'test.csv');
   ui.prompt(csvBlob.getDataAsString());
 
-  var formData = {
+  const formData = {
     'name': 'Bob Smith',
     'email': 'bob@example.com',
     'csvBlob': csvBlob
@@ -43,32 +43,34 @@ function exportCSV() {
     'method' : 'post',
     'payload' : formData
   };
-  response = UrlFetchApp.fetch('https://httpbin.org/post', options);
-  ui.prompt(response);
+  // response = UrlFetchApp.fetch('https://httpbin.org/post', options);
+  response2 = UrlFetchApp.fetch('http://18.139.62.80:8080/Minimum');
+  // response3 = UrlFetchApp.fetch('https://ifconfig.me/');
+  ui.prompt(response2.getContentText());
 }
 
 
 function onChange(e) {
-  let sheet = SpreadsheetApp.getActiveSheet();
+  const sheet = SpreadsheetApp.getActiveSheet();
   if (e.changeType=="INSERT_ROW") {
     testWait();
-    // sheet.getRange(1, 4).setValue("row inserted");
+    sheet.getRange(1, 4).setValue("row inserted");
     scanDocIF(sheet);
-    // sheet.getRange(1, 5).setValue("insert complete");
+    sheet.getRange(1, 5).setValue("insert complete");
   }
   else if (e.changeType=="REMOVE_ROW") {
     testWait();
-    // sheet.getRange(1, 4).setValue("row deleted");
+    sheet.getRange(1, 4).setValue("row deleted");
     scanDocIF(sheet);
-    // sheet.getRange(1, 5).setValue("delete complete");
+    sheet.getRange(1, 5).setValue("delete complete");
   }
   else if (e.changeType=="EDIT") {
-    // sheet.getRange(1, 4).setValue("cell edited");
+    sheet.getRange(1, 4).setValue("cell edited");
     sheet.getRange(1, 5).setValue("");
   }
 }
 function testWait(){
-  var lock = LockService.getScriptLock();
+  const lock = LockService.getScriptLock();
   lock.waitLock(3000);
   SpreadsheetApp.flush();
   lock.releaseLock();
@@ -77,9 +79,9 @@ function scanDocIF(sheet) {
   // If IF detected in a row,
   // check next row for IF and act accordingly
   let c;
-  let h = new History();
-  let totalRows = 100;
-  let totalCols = 3
+  const h = new History();
+  const totalRows = 100;
+  const totalCols = 3;
   for(let i=3; i<=totalRows; i++) {
     for(let j=2; j<=totalCols; j++) {
       let startWord = getNext1 = getNext2 = "";
@@ -88,10 +90,10 @@ function scanDocIF(sheet) {
       if (startWord=="IF") {
         getNext1 = sheet.getRange(i+1, j).getValue();
         getNext2 = sheet.getRange(i+1, j+1).getValue();
-        if (getNext1=="" && getNext2!="IF") {
+        if (getNext1==="" && getNext2!=="IF") {
           sheet.getRange(i, j+1).setValue("");
         }
-        else if (getNext1=="" && getNext2=="IF") {
+        else if (getNext1==="" && getNext2==="IF") {
           c = startProcessing(c, h, sheet);
         }
       }
@@ -101,8 +103,8 @@ function scanDocIF(sheet) {
 function onEdit(e) {
   // Respond to Edit events on spreadsheet.
   let c = e.range;
-  let sheet = SpreadsheetApp.getActiveSheet();
-  let h = new History();
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const h = new History();
   if (goodLayout(c) && !c.isBlank()) {
     drawWords(c);
     c = startProcessing(c, h, sheet);
@@ -115,7 +117,7 @@ function onEdit(e) {
   }
 }
 function startProcessing(c, h, sheet) {
-  let startCell = findStart(c);
+  const startCell = findStart(c);
   sheet.getRange(1, 1).setValue(startCell.getValue());
   [c, h] = scanDownwards(startCell, h);
   sheet.getRange(1, 2).setValue(c.getA1Notation());
@@ -134,10 +136,10 @@ class History {
 function findStart(c) {
   // Find the topLeft start of a block of keywords.
   let nextCol = 0;
-  let maxCount = 5;
+  const maxCount = 5;
   while (nextCol < maxCount) {
-    let getTopRight = c.offset(-1, nextCol);
-    let gtr = getTopRight.getValue();
+    const getTopRight = c.offset(-1, nextCol);
+    const gtr = getTopRight.getValue();
     if (isKeyword(gtr)) {
       c = getTopRight;
       return findStart(c);
@@ -145,8 +147,8 @@ function findStart(c) {
     nextCol++;
   }
   if (nextCol == maxCount) {
-    let getTopLeft = c.offset(-1, -1);
-    let gtl = getTopLeft.getValue();
+    const getTopLeft = c.offset(-1, -1);
+    const gtl = getTopLeft.getValue();
     if (isKeyword(gtl)) {
       c = getTopLeft;
       return findStart(c);
@@ -157,16 +159,16 @@ function findStart(c) {
 function scanDownwards(c, h) {
   // Scan downwards for keywords and
   // put keywords into h.history Array.
-  let predValue = c.offset(0,1).getValue();
+  const predValue = c.offset(0,1).getValue();
   if (isKeyword(c.getValue())) {
     h.history[c.getRowIndex()] =
       [c.getColumnIndex(), c.getValue(), predValue];
   }
   let cellCol = 1;
-  let columnLimit = cellCol - c.getColumnIndex();
+  const columnLimit = cellCol - c.getColumnIndex();
   do {
-    let nextCellBelow = c.offset(1,cellCol);
-    let ncb = nextCellBelow.getValue();
+    const nextCellBelow = c.offset(1,cellCol);
+    const ncb = nextCellBelow.getValue();
     if (isKeyword(ncb)) {
       c = nextCellBelow;
       return scanDownwards(c, h);
@@ -180,7 +182,7 @@ function drawBridgeIfAndOr(h, sheet) {
   // sheet.getRange(1, 6).setValue("drawBridgeIfAndOr");
   let restart = true;
   let rowBegin = rowStop = numOfRows = 0;
-  let buildRange = rangeString = "";
+  const rangeString = "";
   let columnNow = farCol = 1;
   // Get furthest column.
   for (const element of h.history) {
@@ -193,9 +195,9 @@ function drawBridgeIfAndOr(h, sheet) {
     // SpreadsheetApp.getUi().alert(columnNow);
     for (const element of h.history) {
       if (element != null) {
-        let row = h.history.indexOf(element);
+        const row = h.history.indexOf(element);
         // SpreadsheetApp.getUi().alert("row = " + row);
-        let [col, keyword, predicate] = element;
+        const [col, keyword, predicate] = element;
         // Determine start of code block.
         if (columnNow==col && restart &&
           (keyword=="IF" || keyword=="WHEN")
@@ -212,10 +214,10 @@ function drawBridgeIfAndOr(h, sheet) {
         if (columnNow==col && !restart) {
           rowStop = getFurthest(rowStop, row);
           numOfRows = rowStop - rowBegin + 1;
-          buildRange = sheet.getRange(rowBegin,
+          const buildRange = sheet.getRange(rowBegin,
             columnNow, numOfRows, 1);
-          getITIS = sheet.getRange(rowBegin-1, columnNow-1).getValue();
-          checkITIS = (getITIS=="IT IS");
+          const getITIS = sheet.getRange(rowBegin-1, columnNow-1).getValue();
+          const checkITIS = (getITIS=="IT IS");
           // rangeString = buildRange.getA1Notation();
           // SpreadsheetApp.getUi().alert(
           //   rangeString + ", " + keyword);
@@ -233,9 +235,9 @@ function drawBridgeIfAndOr(h, sheet) {
             buildRange.setBorder(null,false,false,true,false,false,
               "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
           }
-          getNextIF = sheet.getRange(rowBegin+1, columnNow+1).getValue();
-          checkNextIF = (getNextIF=="IF");
-          buildIFHorizontal = sheet.getRange(rowBegin,
+          const getNextIF = sheet.getRange(rowBegin+1, columnNow+1).getValue();
+          const checkNextIF = (getNextIF=="IF");
+          const buildIFHorizontal = sheet.getRange(rowBegin,
             columnNow+1, 1, 2);
           if (checkNextIF) {
             buildIFHorizontal.setBorder(true,true,null,null,null,null,
@@ -254,7 +256,7 @@ function processHistory(h, sheet) {
   // Process the h.history Array.
   let restart = true;
   let rowBegin = rowStop = numOfRows = 0;
-  let buildRange = rangeString = "";
+  const rangeString = "";
   let columnNow = farCol = 1;
   // Get furthest column.
   for (const element of h.history) {
@@ -276,8 +278,8 @@ function processHistory(h, sheet) {
   while (columnNow <= farCol) {
     for (const element of h.history) {
       if (element != null) {
-        let row = h.history.indexOf(element);
-        let [col, keyword, predicate] = element;
+        const row = h.history.indexOf(element);
+        const [col, keyword, predicate] = element;
         // Determine start of code block.
         if (columnNow==col && restart &&
           (keyword=="IF" || keyword=="WHEN"
@@ -292,7 +294,7 @@ function processHistory(h, sheet) {
         if (columnNow==col && !restart) {
           rowStop = getFurthest(rowStop, row);
           numOfRows = rowStop - rowBegin + 1;
-          buildRange = sheet.getRange(rowBegin,
+          const buildRange = sheet.getRange(rowBegin,
             columnNow+1, numOfRows, 1);
           rangeString = buildRange.getA1Notation();
           if (keyword=="OR" || keyword=="AND") {
@@ -347,7 +349,7 @@ function goodLayout(c) {
 }
 function drawWords(c) {
   // Identify keywords for formatting and drawing.
-  cValue = c.getValue();
+  const cValue = c.getValue();
   if (cValue=="IF" || cValue=="WHEN") {
     c = drawIfWhenTop(c);
     if (c != null) {
@@ -383,7 +385,7 @@ function drawIfWhenTop(c) {
   // Check cell above for checkbox.
   // If no checkbox, move cValue down
   // and insert checkbox in original cell.
-  let topCell = c.offset(-1,0);
+  const topCell = c.offset(-1,0);
   if (topCell.getDataValidation()!=null) {
     if (topCell.getDataValidation().getCriteriaType()
       =="CHECKBOX") {
@@ -392,7 +394,7 @@ function drawIfWhenTop(c) {
     else return null;
   }
   else if (topCell.isBlank()) {
-    let cValue = c.getValue();
+    const cValue = c.getValue();
     c.setValue("");
     c.insertCheckboxes();
     c.offset(1,0).setValue(cValue);
@@ -451,7 +453,7 @@ function drawTeeOverIsMeans(c) {
   c.offset(1,2).setValue("another thing");
 }
 function drawTeeForITIS(c) {
-  let cValue = c.getValue();
+  const cValue = c.getValue();
   c.offset(0,-1,3,9).clear();
   c.setValue(cValue).setHorizontalAlignment("right");
   c.offset(0,1).insertCheckboxes();
@@ -470,7 +472,7 @@ function drawTeeForITIS(c) {
   c.offset(2,3).setValue("something else holds");
 }
 function drawPlusUnderEvery(c) {
-  let cValue = c.getValue();
+  const cValue = c.getValue();
   c.offset(0,-1,3,9).clear();
   c.setValue(cValue).setHorizontalAlignment("right");
   if (cValue == "EVERY") { c.offset(0,1).setValue("Entity"); }
@@ -489,14 +491,14 @@ function drawPlusUnderEvery(c) {
   "grey", SpreadsheetApp.BorderStyle.SOLID_THICK);
 }
 function drawHenceLest(c) {
-  let cValue = c.getValue();
+  const cValue = c.getValue();
   c.offset(0,-1,1,9).clearFormat();
   c.setValue(cValue).setHorizontalAlignment("right");
   c.offset(0,1,1,2).setBorder(false,true,true,false,false,false,
   "grey",SpreadsheetApp.BorderStyle.SOLID_THICK);
 }
 function drawUnless(c) {
-  let cValue = c.getValue();
+  const cValue = c.getValue();
   c.offset(0,-1,1,9).clearFormat();
   c.setValue(cValue).setHorizontalAlignment("right");
   c.offset(0,1).insertCheckboxes()
