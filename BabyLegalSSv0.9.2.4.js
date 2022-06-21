@@ -7,37 +7,9 @@ function onOpen() {
 
 function exportCSV() {
   const ui = SpreadsheetApp.getUi();
-  const ss = SpreadsheetApp.getActiveSpreadsheet()
-  const sheet = ss.getSheets()[0];
-
-  // This represents ALL the data
-  const range = sheet.getDataRange();
-  const values = range.getValues();
-  let csvStr = "";
-  ui.prompt(values);
-  // This creates a string of the spreadsheet in CSV format with a trailing comma
-  // i=row, j=column
-  for (let i = 0; i < values.length; i++) {
-    let row = "";
-    let comma = (values.indexOf(",") > -1);
-    ui.prompt(comma);
-    for (let j = 0; j < values[i].length; j++) {
-      if (comma && j==0) {
-        row = row + "\"";
-        ui.prompt(row);
-      }
-      if (values[i][j]) {
-        row = row + "_" + values[i][j];
-      }
-      if (comma && j==(values[i].length-1)) {
-        row = row + "\"";
-      }
-      row = row + ",";
-    }
-    row = row.substring(0, (row.length-1));
-    ui.prompt(row);
-    csvStr += row + '\n';
-  }
+  const cellArraysOfText = SpreadsheetApp.getActiveSheet().getDataRange().getDisplayValues();
+  const csvStr = cellArraysToCsv(cellArraysOfText);
+  ui.prompt(csvStr);
 
   //creates de Blob of the csv file
   const csvBlob = Utilities.newBlob(csvStr, 'text/csv', 'test.csv');
@@ -58,16 +30,10 @@ function exportCSV() {
   // response3 = UrlFetchApp.fetch('https://ifconfig.me/');
   // ui.prompt(response2.getContentText());
 }
-function hasComma(cellValue) {
-  const ui = SpreadsheetApp.getUi();
-  ui.prompt(cellValue[0]);
-  for (let i = 0; i < cellValue.length; i++) {
-    if (cellValue[i]=='c') {
-      ui.prompt('c');
-    }
-  }
-  if (cellValue.indexOf(',') > -1) return true;
-  else return false;
+function cellArraysToCsv(data) {
+  const regex = /"/g;
+  let change = data.map(row => row.map(value => `"${value.replace(regex, '\"\"')}"`)).join('\n');
+  return change;
 }
 
 
@@ -100,7 +66,7 @@ function scanDocIF(sheet) {
   // If IF detected in a row,
   // check next row for IF and act accordingly
   let c;
-  const h = new History();
+  const h = new ElementHistory();
   const totalRows = 100;
   const totalCols = 3;
   for(let i=3; i<=totalRows; i++) {
@@ -125,7 +91,7 @@ function onEdit(e) {
   // Respond to Edit events on spreadsheet.
   let c = e.range;
   const sheet = SpreadsheetApp.getActiveSheet();
-  const h = new History();
+  const h = new ElementHistory();
   if (goodLayout(c) && !c.isBlank()) {
     drawWords(c);
     c = startProcessing(c, h, sheet);
@@ -149,7 +115,7 @@ function startProcessing(c, h, sheet) {
   sheet.getRange(1, 3).setValue(h.history.toString());
   return c;
 }
-class History {
+class ElementHistory {
   constructor(history = []) {
     this.history = history;
   }
