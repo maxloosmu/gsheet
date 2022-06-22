@@ -40,23 +40,56 @@ Goal
 - To troubleshoot a bug arising from a "row delete and row insert" action.  This has been tested to happen between the IT IS set of keyword formatting placed above the deleted and inserted row(s), and the Example 13 set of IF IF AND OR set of keyword formatting placed below.
 
 Possible sources of problem:
-- Intuitively, the problem may arise because of a bug in Google Sheets: when a cell has a checkbox, inserting a row above it will add a row with another checkbox in the cell of the added row above the original checkbox.  However, this is unlikely because the code does not respond to checkbox detections.  
-- Tests done on BabyLegalSSv0.9.2.2.js and insertrow-onedit.js show that the problem likely arises from onEdit responding in unpredictable ways to row inserts.  
+- Intuitively, the problem may arise because of a bug in Google Sheets: when a cell has a checkbox, inserting a row above it will add a row with another checkbox in the cell of the added row above the original checkbox.  However, this is unlikely because the code does not respond to checkbox detections.
+- Tests done on BabyLegalSSv0.9.2.2.js and insertrow-onedit.js show that the problem likely arises from onEdit responding in unpredictable ways to row inserts.
 
 Implemented solution:
 - Instead of the original idea of implementing code to overwrite the erroneous outputs, another test moving the code
 ```let startWord = getNext1 = getNext2 = "";```
-from the function `scanDocIF` from outside the 2 for loops into both for loops, resolved the problem.  It is likely that the variables involved were not reset before reusing them in each loop.  
+from the function `scanDocIF` from outside the 2 for loops into both for loops, resolved the problem.  It is likely that the variables involved were not reset before reusing them in each loop.
 
 Final Outcome:
 - I tried to replicate the error by moving the code
 ```let startWord = getNext1 = getNext2 = "";```
-back to the previous position, but failed to replicate the error.  This is strange and is likely due to some inherent updates in Google Sheets itself that were not reported.  However, to avoid future problems, the code is moved to its new position.  
+back to the previous position, but failed to replicate the error.  This is strange and is likely due to some inherent updates in Google Sheets itself that were not reported.  However, to avoid future problems, the code is moved to its new position.
+
+Additional changes:
+- included onOpen and created exportCSV functions. onOpen adds to the menu bar of Google Sheets, exportCSV provides the functionality for the extra menu option.  exportCSV creates CSV string to send to remote server and outputs response in dialog box.
 
 #### insertrow-onedit.js Summary
-Tasks done
+Tasks done:
 - Code for onEdit to detect cell range for event created.
-- Row inserts tested in the spreadsheet.  Detection of cell range using onEdit sometimes show the first leftmost cell of inserted row, sometimes show the cell which had the focus before the insert, and sometimes nothing showed.  
-- Row deletes do not trigger response.  
+- Row inserts tested in the spreadsheet.  Detection of cell range using onEdit sometimes show the first leftmost cell of inserted row, sometimes show the cell which had the focus before the insert, and sometimes nothing showed.
+- Row deletes do not trigger response.
+
+#### insertrow-onedit-testCSV.js Summary
+Changes made:
+- changed from insertrow-onedit.js
+- created and tested testCSV, testCSV2, cellArraysToCsv functions.
+- tested Sidebars in Google Sheets
+- created testIndexOf to check output
+
+#### BabyLegalSSv0.9.2.3.js Summary
+Changes made:
+- troubleshoot exportCSV function due to mistaken impression that `values[i][j]` selects for individual character, when it only selects for individual cell in 2D array of cells.
+- received help from https://stackoverflow.com/questions/72688102/how-do-i-parse-text-strings-in-google-sheets-cells-to-a-csv-file-with-google-app
+- tested sending CSV string to different remote websites.
+
+#### BabyLegalSSv0.9.2.4.js Summary
+Changes made:
+- testing how sidebar works by creating doGet function.  doGet function is meant to support sidebar to display output from remote L4 server, but did not work.
+- received help from https://stackoverflow.com/questions/72715553/google-apps-script-google-sheet-template-scriplets-dont-work
+
+Outcome:
+- Sidebar working.
+
+#### BabyLegalSSv0.9.2.5.js Summary
+Some relevant links:
+- https://developers.google.com/apps-script/reference/utilities/utilities?hl=en#getUuid()
+- https://developers.google.com/apps-script/reference/cache/cache-service?hl=en#getUserCache()
+- https://developers.google.com/apps-script/reference/cache
+- https://developers.google.com/apps-script/guides/html/reference/url
+- https://stackoverflow.com/questions/60977985/programmatically-extracting-googlesheets-gid-using-python
+
 
 

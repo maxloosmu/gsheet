@@ -4,12 +4,6 @@ function onOpen() {
     .addItem('Show Answers Sidebar', 'showSidebar')
     .addToUi();
 }
-// function doGet() {
-//   let htmlTemplate = HtmlService.createTemplateFromFile('index');
-//   htmlTemplate.dataFromServerTemplate = exportCSV();
-//   let htmlOutput = htmlTemplate.evaluate().setSandboxMode(HtmlService.SandboxMode.IFRAME).setTitle('Answers from CoreL4');
-//   return htmlOutput;
-// }
 function showSidebar() {
   let html = HtmlService.createTemplateFromFile('answers');
   html.data = exportCSV();

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+  function answers() {
+    google.script.run.withSuccessHandler(
+      function (data) {
+        document.getElementById("myAnswers").innerText = data;
+      }
+    ).exportCSV();
+  }
+</script>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    Click "Export CSV" button to get answers from CoreL4.
+    <br><br><input type="button" value="Export CSV" onclick="answers()" />
+    <p id="myAnswers"></p><br><br>
+  </body>
+</html>
+
