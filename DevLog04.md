@@ -83,13 +83,16 @@ Changes made:
 Outcome:
 - Sidebar working.
 
+#### uuid-urlid.js Summary
+- Created for testing various methods
+
 #### BabyLegalSSv0.9.2.5.js Summary
 Some relevant links:
 - https://developers.google.com/apps-script/reference/utilities/utilities?hl=en#getUuid()
 - https://developers.google.com/apps-script/reference/cache/cache-service?hl=en#getUserCache()
 - https://developers.google.com/apps-script/reference/cache
 - https://developers.google.com/apps-script/guides/html/reference/url
-- https://stackoverflow.com/questions/60977985/programmatically-extracting-googlesheets-gid-using-python
+- https://developers.google.com/apps-script/reference/forms/date-time-item
 
 
 
