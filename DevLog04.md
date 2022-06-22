@@ -94,5 +94,6 @@ Some relevant links:
 - https://developers.google.com/apps-script/guides/html/reference/url
 - https://developers.google.com/apps-script/reference/forms/date-time-item
 
-
+Goals:
+- to implement uuid, spreadsheet id and sheet id data transfer to remote L4 server.
 
