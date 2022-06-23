@@ -19,9 +19,14 @@ function showSidebar() {
   let htmlOutput = html.evaluate().setTitle('Answers from CoreL4');
   SpreadsheetApp.getUi().showSidebar(htmlOutput);
 }
+function updateCacheCommand(command) {
+  const cache = CacheService.getUserCache();
+  cache.put("command", selection, 3600);
+}
 function exportCSV() {
   const cache = CacheService.getUserCache();
-  const cached = cache.get("uuid");
+  const cachedUuid = cache.get("uuid");
+  const cachedCommand = cache.get("command");
   const ui = SpreadsheetApp.getUi();
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = SpreadsheetApp.getActiveSheet();
@@ -37,23 +42,23 @@ function exportCSV() {
   const formData = {
     'name': 'Max Loo',
     'email': 'maxloo@smu.edu.sg',
-    'uuid': cached,
+    'uuid': cachedUuid,
+    'command': cachedCommand,
     'spreadsheetId': spreadsheetId,
     'sheetId': sheetId,
     'csvString': csvStr
   };
-
   var options = {
     'method' : 'post',
     'payload' : formData
   };
-  // let response = UrlFetchApp.fetch('https://httpbin.org/post', options);
-  let response2 = UrlFetchApp.fetch('http://18.139.62.80:8080/post', options);
+  let response = UrlFetchApp.fetch('https://httpbin.org/post', options);
+  // let response2 = UrlFetchApp.fetch('http://18.139.62.80:8080/post', options);
   // let response3 = UrlFetchApp.fetch('https://ifconfig.me/');
   // let response4 = UrlFetchApp.fetch('http://202.161.35.31:8080/', options);
   // ui.prompt(response2.getContentText());
 
-  return response2.getContentText();
+  return response.getContentText();
 }
 function cellArraysToCsv(rows) {
   const ui = SpreadsheetApp.getUi();

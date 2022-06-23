@@ -94,6 +94,10 @@ Some relevant links:
 - https://developers.google.com/apps-script/guides/html/reference/url
 - https://developers.google.com/apps-script/reference/forms/date-time-item
 
+Received help from:
+- https://stackoverflow.com/questions/72722597/google-apps-script-google-sheets-getting-spreadsheet-id-and-sheet-id-programm
+
 Goals:
-- to implement uuid, spreadsheet id and sheet id data transfer to remote L4 server.
-- Finetuned the Sidebar UI.
+- to implement a transfer of uuid, spreadsheet id and sheet id data to remote L4 server.
+- to get commands list from remote L4 server for user to choose using the Sidebar UI, and then send back to server.
+- Finetuned the Sidebar UI using bootstrap.

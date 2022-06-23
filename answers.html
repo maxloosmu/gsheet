@@ -35,6 +35,7 @@
   }
   function selectCommand(event) {
     let selection = event.target.value;
+    google.script.run.withSuccessHandler().updateCacheCommand(selection);
     document.getElementById("myCommand").innerText = selection + " selected.";
     let command = document.getElementById("command");
     removeOptions(command);
@@ -59,10 +60,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.c
   <body>
     <label for="command" style="margin-bottom: 0rem" >Choose a L4 function process to activate: </label>
     <select id="command" onclick="getCommands()" onchange="selectCommand(event)" class="form-control" ></select>
-    <br><br><p id="myCommand"></p>
-    <br><br>Click "Export CSV" button to get answers from CoreL4.
-    <br><br><input type="button" value="Export CSV" onclick="answers()" class="btn btn-primary" />
-    <br><br><p id="myAnswers"></p>
+    <br><p id="myCommand"></p>
+    <br>Click "Export CSV" button to get answers from CoreL4.
+    <br><input type="button" value="Export CSV" onclick="answers()" class="btn btn-primary" />
+    <br><p id="myAnswers"></p>
   </body>
 </html>
 
