@@ -7,15 +7,62 @@
       }
     ).exportCSV();
   }
+  function getCommands() {
+    google.script.run.withSuccessHandler(
+      function(ar) {
+        let command = document.getElementById("command");
+        command.remove(0);
+        for (let i=0; i<(ar.length-1); i++) {
+          let option = document.createElement("OPTION");
+          option.text = ar[i];
+          option.value = ar[i];
+          command.appendChild(option);
+        }
+        // ar.forEach(
+        //   function(item) {
+        //     let option = document.createElement("OPTION");
+        //     option.text = item;
+        //     option.value = item;
+        //     command.appendChild(option);
+        // });
+    }).getAllCommands();
+  }
+  function removeOptions(selectElement) {
+    var i, len = selectElement.options.length - 1;
+    for(i = len; i >= 0; i--) {
+      selectElement.remove(i);
+    }
+  }
+  function selectCommand(event) {
+    let selection = event.target.value;
+    document.getElementById("myCommand").innerText = selection + " selected.";
+    let command = document.getElementById("command");
+    removeOptions(command);
+    let option = document.createElement("OPTION");
+    option.text = selection;
+    option.value = selection;
+    command.appendChild(option);
+  }
 </script>
+<style>
+.narrow
+{
+  margin-bottom: 0.5rem;
+}
+</style>
 <html>
   <head>
     <base target="_top">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />
   </head>
   <body>
-    Click "Export CSV" button to get answers from CoreL4.
-    <br><br><input type="button" value="Export CSV" onclick="answers()" />
-    <p id="myAnswers"></p><br><br>
+    <label for="command" style="margin-bottom: 0rem" >Choose a L4 function process to activate: </label>
+    <select id="command" onclick="getCommands()" onchange="selectCommand(event)" class="form-control" ></select>
+    <br><br><p id="myCommand"></p>
+    <br><br>Click "Export CSV" button to get answers from CoreL4.
+    <br><br><input type="button" value="Export CSV" onclick="answers()" class="btn btn-primary" />
+    <br><br><p id="myAnswers"></p>
   </body>
 </html>
 

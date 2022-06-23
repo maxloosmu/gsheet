@@ -1,24 +1,45 @@
 function onOpen() {
+  const cache = CacheService.getUserCache();
+  let cached = "";
+  if (cache.get("uuid") != null) {
+    cached = cache.get("uuid");
+  }
+  else {
+    cached = Utilities.getUuid();
+    cache.put("uuid", cached, 3600);
+  }
   const ui = SpreadsheetApp.getUi();
-  ui.createMenu('Show Answers Sidebar')
-    .addItem('Show Answers Sidebar', 'showSidebar')
+  ui.createMenu('Call L4')
+    .addItem('Activate L4 functions remotely', 'showSidebar')
     .addToUi();
 }
 function showSidebar() {
   let html = HtmlService.createTemplateFromFile('answers');
-  html.data = exportCSV();
+  // html.data = exportCSV();
   let htmlOutput = html.evaluate().setTitle('Answers from CoreL4');
   SpreadsheetApp.getUi().showSidebar(htmlOutput);
 }
 function exportCSV() {
+  const cache = CacheService.getUserCache();
+  const cached = cache.get("uuid");
   const ui = SpreadsheetApp.getUi();
-  const cellArraysOfText = SpreadsheetApp.getActiveSheet().getDataRange().getDisplayValues();
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = SpreadsheetApp.getActiveSheet();
+  spreadsheetId = spreadsheet.getId()
+  sheetId = sheet.getSheetId();
+  if (sheetId == 0) {
+    sheetId = sheetId.toFixed();
+  }
+  const cellArraysOfText = sheet.getDataRange().getDisplayValues();
   const csvStr = cellArraysToCsv(cellArraysOfText);
   // ui.prompt(csvStr);
 
   const formData = {
-    'name': 'Bob Smith',
-    'email': 'bob@example.com',
+    'name': 'Max Loo',
+    'email': 'maxloo@smu.edu.sg',
+    'uuid': cached,
+    'spreadsheetId': spreadsheetId,
+    'sheetId': sheetId,
     'csvString': csvStr
   };
 
@@ -26,10 +47,10 @@ function exportCSV() {
     'method' : 'post',
     'payload' : formData
   };
-  // response = UrlFetchApp.fetch('https://httpbin.org/post', options);
-  response2 = UrlFetchApp.fetch('http://18.139.62.80:8080/', options);
-  // response3 = UrlFetchApp.fetch('https://ifconfig.me/');
-  // response4 = UrlFetchApp.fetch('http://202.161.35.31:8080/', options);
+  // let response = UrlFetchApp.fetch('https://httpbin.org/post', options);
+  let response2 = UrlFetchApp.fetch('http://18.139.62.80:8080/post', options);
+  // let response3 = UrlFetchApp.fetch('https://ifconfig.me/');
+  // let response4 = UrlFetchApp.fetch('http://202.161.35.31:8080/', options);
   // ui.prompt(response2.getContentText());
 
   return response2.getContentText();
@@ -59,7 +80,11 @@ function cellArraysToCsv(rows) {
   // let change = rows.map(row => row.map(value => `"${value.replace(regex, '\"\"')}"`)).join('\n');
   return csvStr;
 }
-
+function getAllCommands() {
+  let response = UrlFetchApp.fetch('http://18.139.62.80:8080/get')
+  let commandArray = response.getContentText().split("\n");
+  return commandArray;
+}
 
 function onChange(e) {
   const sheet = SpreadsheetApp.getActiveSheet();
@@ -519,6 +544,7 @@ function drawUnless(c) {
     c.offset(0,2).setValue("some exception");
   }
 }
+
 
 
 

@@ -9,10 +9,15 @@ function myFunction() {
   }
   Logger.log(spreadsheetId);
   Logger.log(sheetId);
-  const tempId = Utilities.getUuid();
-  Logger.log(tempId);
   let cache = CacheService.getUserCache();
-  cache.put("uuid", tempId, 60);
-  cached = cache.get("uuid");
-  Logger.log(cached);
+  let cached = "";
+  if (cache.get("uuid") != null) {
+    cached = cache.get("uuid");
+    Logger.log(cached);
+  }
+  else {
+    cached = Utilities.getUuid();
+    Logger.log(cached);
+    cache.put("uuid", cached, 3600);
+  }
 }

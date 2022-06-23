@@ -96,4 +96,4 @@ Some relevant links:
 
 Goals:
 - to implement uuid, spreadsheet id and sheet id data transfer to remote L4 server.
-
+- Finetuned the Sidebar UI.
