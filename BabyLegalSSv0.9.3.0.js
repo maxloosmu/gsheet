@@ -14,7 +14,7 @@ function onOpen() {
     .addToUi();
 }
 function showSidebar() {
-  let html = HtmlService.createTemplateFromFile('answers');
+  let html = HtmlService.createTemplateFromFile('main');
   // html.data = exportCSV();
   let htmlOutput = html.evaluate().setTitle('Answers from CoreL4');
   SpreadsheetApp.getUi().showSidebar(htmlOutput);
@@ -31,7 +31,7 @@ function exportCSV() {
   const cachedCommand = cache.get("command");
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = SpreadsheetApp.getActiveSheet();
-  sheet.getRange(1, 1).setValue(cachedUuid);
+  // sheet.getRange(1, 1).setValue(cachedUuid);
   spreadsheetId = spreadsheet.getId()
   sheetId = sheet.getSheetId();
   if (sheetId == 0) {
@@ -39,7 +39,7 @@ function exportCSV() {
   }
   const cellArraysOfText = sheet.getDataRange().getDisplayValues();
   const csvStr = cellArraysToCsv(cellArraysOfText);
-  // ui.prompt(csvStr);
+  ui.prompt(csvStr);
 
   const formData = {
     'name': 'Max Loo',

@@ -3,6 +3,8 @@
   function answers() {
     google.script.run.withSuccessHandler(
       function (data) {
+        document.getElementById("myAnswers").innerText = "";
+        // await new Promise(r => setTimeout(r, 1000));
         document.getElementById("myAnswers").innerText = data;
       }
     ).exportCSV();
@@ -36,7 +38,7 @@
   function selectCommand(event) {
     let selection = event.target.value;
     google.script.run.withSuccessHandler().updateCacheCommand(selection);
-    document.getElementById("myCommand").innerText = selection + " selected.";
+    document.getElementById("myCommand").innerText = '"' + selection + '" selected.';
     let command = document.getElementById("command");
     removeOptions(command);
     let option = document.createElement("OPTION");
@@ -64,6 +66,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.c
     <br>Click "Export CSV" button to get answers from CoreL4.
     <br><input type="button" value="Export CSV" onclick="answers()" class="btn btn-primary" />
     <br><p id="myAnswers"></p>
+    <br><p><?!= exportCSV() ?></p>
   </body>
 </html>
 

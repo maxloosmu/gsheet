@@ -1,3 +1,7 @@
+## Actions to take to run the Legal Spreadsheet
+- When a new spreadsheet is created, all the existing code will be cut and pasted into the files Code.gs and main.html.  After that, the Run button on the menu of the Script Editor will have to be clicked and the processes approved.
+- After approving the processes, click on the Triggers button in the left sidemenu and create a new trigger for the onChange function, responding to On Change events.
+
 #### BabyLegalSSv0.9.1.0 Summary
 Goals
 - Since I could not determine the feasibility of using the `onChange` function unless I try it, BabyLegalSSv0.9.1.0 will be used to test this function.
@@ -81,12 +85,12 @@ Changes made:
 - received help from https://stackoverflow.com/questions/72715553/google-apps-script-google-sheet-template-scriplets-dont-work
 
 Outcome:
-- Sidebar working.
+- Sidebar working.  Output from remote server displayed in Sidebar.
 
 #### uuid-urlid.js Summary
 - Created for testing various methods
 
-#### BabyLegalSSv0.9.2.5.js Summary
+#### BabyLegalSSv0.9.2.5.js and answers.html Summary
 Some relevant links:
 - https://developers.google.com/apps-script/reference/utilities/utilities?hl=en#getUuid()
 - https://developers.google.com/apps-script/reference/cache/cache-service?hl=en#getUserCache()
@@ -101,3 +105,7 @@ Goals:
 - to implement a transfer of uuid, spreadsheet id and sheet id data to remote L4 server.
 - to get commands list from remote L4 server for user to choose using the Sidebar UI, and then send back to server.
 - Finetuned the Sidebar UI using bootstrap.
+
+#### BabyLegalSSv0.9.3.0.js and main.html Summary
+Goals:
+- the exportCSV function to remote server to get output will be triggered by every onEdit function call, and displayed in the Sidebar.
