@@ -106,6 +106,16 @@ Goals:
 - to get commands list from remote L4 server for user to choose using the Sidebar UI, and then send back to server.
 - Finetuned the Sidebar UI using bootstrap.
 
-#### BabyLegalSSv0.9.3.0.js and main.html Summary
+#### BabyLegalSSv0.9.3.0.js and mainV0.9.3.0.js.html Summary
 Goals:
 - the exportCSV function to remote server to get output will be triggered by every onEdit function call, and displayed in the Sidebar.
+
+Outcome:
+- Successfully triggered the exportCSV function based on every onEdit function call.
+- New problem encountered: selection of L4 function is unstable due to inability to properly handle the cache.
+
+#### onedit-sidebar.js and mainV0.2.html Summary
+Goals:
+- to troubleshoot a proper way to handle the cache and update the L4 function.
+
+

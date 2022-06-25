@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<script>
+  function answers() {
+    google.script.run.withSuccessHandler(
+      function (data) {
+        document.getElementById("myAnswers").innerText = "";
+        // await new Promise(r => setTimeout(r, 1000));
+        document.getElementById("myAnswers").innerText = data;
+      }
+    ).exportCSV();
+  }
+  function getCommands() {
+    google.script.run.withSuccessHandler(
+      function(cmdArray) {
+        let command = document.getElementById("command");
+        command.remove(0);
+        // removeOptions(command);
+        // let currentCommand = getCachedCommand(ar[0]);
+        for (let i=0; i<(cmdArray[0].length-1); i++) {
+          let option = document.createElement("OPTION");
+          option.text = cmdArray[0][i];
+          option.value = cmdArray[0][i];
+          command.appendChild(option);
+        }
+    }).getAllCommands();
+  }
+  function removeOptions(selectElement) {
+    var i, len = selectElement.options.length - 1;
+    for(i = len; i >= 0; i--) {
+      selectElement.remove(i);
+    }
+  }
+  function selectCommand(event) {
+    let selection = event.target.value;
+    google.script.run.withSuccessHandler().updateCacheCommand(selection);
+    document.getElementById("myCommand").innerText = '"' + selection + '" selected.';
+    let command = document.getElementById("command");
+    removeOptions(command);
+    // command.value = selection;
+    // command.text = selection;
+    let option = document.createElement("OPTION");
+    option.text = selection;
+    option.value = selection;
+    command.appendChild(option);
+  }
+  function showCommand(cachedCommand) {
+    document.getElementById("myCommand").innerText = '"' + cachedCommand + '" selected.';
+  }
+</script>
+<style>
+.narrow
+{
+  margin-bottom: 0.5rem;
+}
+</style>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <label for="command" style="margin-bottom: 0rem" >Choose a L4 function process to activate: </label>
+    <select id="command" onclick="getCommands()" onchange="selectCommand(event)" class="form-control" ></select>
+    <br><p id="myCommand">"natural4-exe --only native" selected.</p>
+    <!-- Click "Update L4 function" button to update the function CoreL4 will use to process your spreadsheet.   -->
+    <!-- <input type="button" value="Update L4 function" onclick="answers()" class="btn btn-primary" /> -->
+    <!-- <p id="myAnswers"></p> -->
+    <p><pre><?= exportCSV() ?></pre></p>
+  </body>
+</html>
+<script>
+  getCommands();
+  let cachedCommand = getCachedCommand("natural4-exe --only native");
+  document.getElementById("myCommand").innerText = '"' + cachedCommand + '" selected.';
+  // showCommand(cachedCommand);
+  if (document.getElementById("command").value == "") {
+    document.getElementById("command").value = cachedCommand;
+    document.getElementById("command").text = cachedCommand;
+    // document.getElementById("command").selected = cachedCommand;
+  }
+  function getCachedCommand(command) {
+    let cache = CacheService.getUserCache();
+    let cachedCommand = cache.get("command");
+    if (cachedCommand == null) {
+      cache.put("command", command, 3600);
+      cachedCommand = command;
+    }
+    return cachedCommand;
+  }
+</script>
+

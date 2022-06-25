@@ -1,5 +1,5 @@
 function onOpen() {
-  const cache = CacheService.getUserCache();
+  let cache = CacheService.getUserCache();
   let cached = "";
   if (cache.get("uuid") != null) {
     cached = cache.get("uuid");
@@ -8,40 +8,38 @@ function onOpen() {
     cached = Utilities.getUuid();
     cache.put("uuid", cached, 3600);
   }
-  const ui = SpreadsheetApp.getUi();
+  let ui = SpreadsheetApp.getUi();
   ui.createMenu('Call L4')
     .addItem('Activate L4 functions remotely', 'showSidebar')
     .addToUi();
 }
 function showSidebar() {
   let html = HtmlService.createTemplateFromFile('main');
-  // html.data = exportCSV();
   let htmlOutput = html.evaluate().setTitle('Answers from CoreL4');
   SpreadsheetApp.getUi().showSidebar(htmlOutput);
 }
-function updateCacheCommand(command) {
-  const cache = CacheService.getUserCache();
-  cache.put("command", command, 3600);
-}
 function exportCSV() {
-  const ui = SpreadsheetApp.getUi();
-  const cache = CacheService.getUserCache();
-  const cachedUuid = cache.get("uuid");
+  let ui = SpreadsheetApp.getUi();
+  let cache = CacheService.getUserCache();
+  let cachedUuid = cache.get("uuid");
   // ui.prompt(cachedUuid);
-  const cachedCommand = cache.get("command");
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = SpreadsheetApp.getActiveSheet();
+  let cachedCommand = cache.get("command");
+  if (cachedCommand == null) {
+    cachedCommand = "natural4-exe --only native";
+  }
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = SpreadsheetApp.getActiveSheet();
   // sheet.getRange(1, 1).setValue(cachedUuid);
-  spreadsheetId = spreadsheet.getId()
-  sheetId = sheet.getSheetId();
+  let spreadsheetId = spreadsheet.getId()
+  let sheetId = sheet.getSheetId();
   if (sheetId == 0) {
     sheetId = sheetId.toFixed();
   }
-  const cellArraysOfText = sheet.getDataRange().getDisplayValues();
-  const csvStr = cellArraysToCsv(cellArraysOfText);
-  ui.prompt(csvStr);
+  let cellArraysOfText = sheet.getDataRange().getDisplayValues();
+  let csvStr = cellArraysToCsv(cellArraysOfText);
+  // ui.prompt(csvStr);
 
-  const formData = {
+  let formData = {
     'name': 'Max Loo',
     'email': 'maxloo@smu.edu.sg',
     'uuid': cachedUuid,
@@ -50,7 +48,7 @@ function exportCSV() {
     'sheetId': sheetId,
     'csvString': csvStr
   };
-  var options = {
+  let options = {
     'method' : 'post',
     'payload' : formData
   };
@@ -90,8 +88,19 @@ function cellArraysToCsv(rows) {
 function getAllCommands() {
   let response = UrlFetchApp.fetch('http://18.139.62.80:8080/get')
   let commandArray = response.getContentText().split("\n");
-  return commandArray;
+  let cache = CacheService.getUserCache();
+  let cachedCommand = cache.get("command");
+  if (cachedCommand == null) {
+    cache.put("command", commandArray[0], 3600);
+    cachedCommand = commandArray[0];
+  }
+  return [commandArray, cachedCommand];
 }
+function updateCacheCommand(command) {
+  let cache = CacheService.getUserCache();
+  cache.put("command", command, 3600);
+}
+
 
 function onChange(e) {
   const sheet = SpreadsheetApp.getActiveSheet();
@@ -158,6 +167,10 @@ function onEdit(e) {
       c.offset(-1,0).clear();
     }
   }
+  // if (e.range.getA1Notation() == "B3") {
+  //   showSidebar();
+  // }
+  showSidebar();
 }
 function startProcessing(c, h, sheet) {
   const startCell = findStart(c);
@@ -225,7 +238,7 @@ function drawBridgeIfAndOr(h, sheet) {
   // sheet.getRange(1, 6).setValue("drawBridgeIfAndOr");
   let restart = true;
   let rowBegin = rowStop = numOfRows = 0;
-  const rangeString = "";
+  let rangeString = "";
   let columnNow = farCol = 1;
   // Get furthest column.
   for (const element of h.history) {
@@ -299,7 +312,7 @@ function processHistory(h, sheet) {
   // Process the h.history Array.
   let restart = true;
   let rowBegin = rowStop = numOfRows = 0;
-  const rangeString = "";
+  let rangeString = "";
   let columnNow = farCol = 1;
   // Get furthest column.
   for (const element of h.history) {
