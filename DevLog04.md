@@ -1,6 +1,6 @@
 ## Actions to take to run the Legal Spreadsheet
 - When a new spreadsheet is created, all the existing code will be cut and pasted into the files Code.gs and main.html.  After that, the Run button on the menu of the Script Editor will have to be clicked and the processes approved.
-- After approving the processes, click on the Triggers button in the left sidemenu and create a new trigger for the onChange function, responding to On Change events.
+- After approving the processes, click on the Triggers button in the left sidemenu and create new triggers for the onOpen, onEdit and onChange functions, responding to On Open, On Edit and On Change events respectively.
 
 #### BabyLegalSSv0.9.1.0 Summary
 Goals

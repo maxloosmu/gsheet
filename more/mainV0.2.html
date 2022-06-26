@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script
+      src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+  </head>
+  <body>
+    <p>Test Sidebar.</p>
+    <form>
+      <select id="command" name="command">
+        <option>alpha</option>
+        <option>beta</option>
+        <option>gamma</option>
+        <option>natural4-exe --only native</option>
+      </select>
+    </form>
+    <p><pre><?= getCommand() ?> selected.</pre></p>
+    <p><pre><?= exportCSV() ?></pre></p>
+    <script>
+      $(function() {
+        google.script.run.withSuccessHandler(makeCommands)
+          .getAllCommands();
+        google.script.run.withSuccessHandler(showCommand)
+          .getCommand();
+      });
+      function makeCommands(commandArray) {
+        var list = $('#command');
+        list.empty();
+        for (var i = 0; i < commandArray.length; i++) {
+          list.append('<option>' + commandArray[i] + '</option>');
+        }
+      }
+      function showCommand(data) {
+        document.getElementById("command").value = data;
+      }
+
+      handleOptionChange = function(e) {
+        google.script.run.optionChanged(e.target.value);
+      };
+      // google.script.run.withSuccessHandler(
+      //   function(data) {
+      //     document.getElementById("command").value = data;
+      //   }
+      // ).getCommand();
+      // document.getElementById('command')
+      //   .addEventListener('load', showCommand(getFirstCommand));
+      document.getElementById('command')
+        .addEventListener('change', handleOptionChange);
+    </script>
+  </body>
+</html>
