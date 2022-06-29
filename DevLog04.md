@@ -114,8 +114,16 @@ Outcome:
 - Successfully triggered the exportCSV function based on every onEdit function call.
 - New problem encountered: selection of L4 function is unstable due to inability to properly handle the cache.
 
-#### onedit-sidebar.js and mainV0.2.html Summary
+#### onedit-sidebar, mainV0.2, BabyLegalSSv0.9.3.1, mainV0.9.3.1 Summary
 Goals:
-- to troubleshoot a proper way to handle the cache and update the L4 function.
+- to separately troubleshoot a proper way to handle the cache and update the L4 function using onedit-sidebar and mainV0.2, and update BabyLegalSSv0.9.3.1 and mainV0.9.3.1.
 
+Outcome:
+- successfully tested cache, but realised that the dropdown menu for the L4 functions has unresolvable GUI issues.  The dropdown menu will repeatedly display the first command rather than the selected command.  But problem is not severe because there is another row of text indicating the selection correctly.
+- also successfully tested files transferred as text stream from the Python Flask server to the Spreadsheet server, and then file creation and saved in a newly created Google Drive folder.
+- problem arised in that too many similar folders and files are created/cloned.
 
+#### BabyLegalSSv0.9.4.0, mainV0.9.4.0 summary
+Goals:
+- to test and implement the Python Flask server side hello.py and image.html.
+- to reduce reliance on Google Drive.

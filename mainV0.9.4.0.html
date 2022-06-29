@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script
+      src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+  </head>
+  <body>
+    <p id="petri"></p>
+    <pre id="outputPetri"></pre>
+    <form>
+      <label for="command">Choose a L4 function process to activate:</label>
+      <select id="command" name="command">
+        <option>Loading..</option>
+      </select>
+    </form>
+    <p><pre>"<?= getCommand() ?>" selected.</pre></p>
+    <p><pre><?= exportCSV() ?></pre></p>
+    <script>
+      $(function() {
+        google.script.run.withSuccessHandler(makeCommands)
+          .getAllCommands();
+        google.script.run.withSuccessHandler(showCommand)
+          .getCommand();
+        google.script.run.withSuccessHandler(showCommand)
+          .getCommand();
+        google.script.run.withSuccessHandler(showPetri)
+          .petriLink();
+      });
+      function makeCommands(commandArray) {
+        var list = $('#command');
+        list.empty();
+        for (var i = 0; i < commandArray.length; i++) {
+          list.append('<option>' + commandArray[i] + '</option>');
+        }
+      }
+      function showCommand(data) {
+        document.getElementById("command").value = data;
+      }
+      function showPetri(data) {
+        document.getElementById("petri").innerHTML = data;
+      }
+      // document.getElementById('petri')
+      //   .addEventListener('click', activatePetri);
+      // function activatePetri() {
+      //   google.script.run.withSuccessHandler(outputPetri)
+      //     .getPetri();
+      // }
+      function outputPetri(data) {
+        // document.getElementById("outputPetri").innerHTML = data;
+      }
+      // handleOptionChange sends user selection to Google server
+      handleOptionChange = function(e) {
+        google.script.run.optionChanged(e.target.value);
+      };
+      document.getElementById('command')
+        .addEventListener('change', handleOptionChange);
+    </script>
+  </body>
+</html>
