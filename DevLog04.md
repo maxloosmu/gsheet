@@ -127,3 +127,11 @@ Outcome:
 Goals:
 - to test and implement the Python Flask server side hello.py and image.html.
 - to reduce reliance on Google Drive.
+
+#### LegalSSv0.9.4.1, mainV0.9.4.1, LegalSSv0.9.4.2, mainV0.9.4.2, LegalSSv0.9.4.3, mainV0.9.4.3 summary
+Goals:
+- to show 4 links that access the Python Flask server directly in the Sidebar, namely for: corel4, petri, aasvg, json.
+- to implement the links with UUID, SSID, SID.
+- to implement concurrency in the Flask server.
+- to implement the SVG index for aasvg without templates to reduce the effect of caching.
+
