@@ -1,3 +1,23 @@
+function loadDev() {
+  let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = SpreadsheetApp.getActiveSheet();
+  let range = sheet.getRange("A1:Z10").getDisplayValues();
+
+  liveUpdates = devScan(range, /live updates: (true|false)/i) || true; if (liveUpdates == "false") { liveUpdates = false }
+  Logger.log("setting liveUpdates to " + liveUpdates);
+}
+function devScan(range, scanregex) {
+  for (let i = 0; i < range.length; i++) {
+    for (let j = 0; j < range[i].length; j++) {
+      if (scan = range[i][j].match(scanregex)) {
+        Logger.log(`devScan hit: ${range[i][j]} matched ${scan}`);
+        return scan[1];
+      }
+    }
+  }
+  return null;
+}
+
 function onEdit(e) {
   showSidebar();
 }
@@ -82,3 +102,4 @@ function optionChanged(value) {
   // let ui = SpreadsheetApp.getUi();
   // ui.prompt(value);
 }
+
