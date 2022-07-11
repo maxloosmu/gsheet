@@ -1,3 +1,10 @@
+Logger.log("global top");
+let global = "global variable";
+Logger.log(global);
+function justLog() {
+  Logger.log("First Log from a function: " + global);
+  Logger.log(`Second Log from a function: ${global}`);
+}
 function loadDev() {
   let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = SpreadsheetApp.getActiveSheet();
@@ -102,4 +109,3 @@ function optionChanged(value) {
   // let ui = SpreadsheetApp.getUi();
   // ui.prompt(value);
 }
-
